@@ -1,6 +1,20 @@
 Rails.application.routes.draw do
   devise_for :users
-  root to: 'application#index'
+
+  # API Endpoints
+  api_version(module: 'api/v1', path: { value: 'api/v1' }, defaults: { format: :json }) do
+    resources :users do
+      collection do
+        resources :auth, controller: :authentication, only: [] do
+          collection do
+            post :token
+            post :refresh_token
+            post :invalidate_tokens
+          end
+        end
+      end
+    end
+  end
 
   require 'sidekiq/web'
   mount Sidekiq::Web, at: 'sidekiq'
