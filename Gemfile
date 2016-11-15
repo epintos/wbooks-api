@@ -30,7 +30,13 @@ gem 'autoprefixer-rails'
 
 gem 'bootstrap-sass'
 
+# Use for processing images
+gem 'mini_magick'
+
 gem 'carrierwave'
+
+# Pagination
+gem 'kaminari'
 
 # Authentication
 gem 'devise'
