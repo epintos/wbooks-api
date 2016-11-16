@@ -13,6 +13,7 @@ Rails.application.routes.draw do
         end
       end
       member do
+        resources :wishes, only: [:index, :show]
         resources :rents, only: [:create, :destroy, :index, :show]
       end
     end

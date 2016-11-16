@@ -5,6 +5,8 @@ class User < ApplicationRecord
 
   has_many :rents
 
+  has_many :wishes
+
   # Hooks
   before_validation :generate_verification_code, on: :create
 
