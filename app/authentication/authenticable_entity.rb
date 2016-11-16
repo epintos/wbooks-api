@@ -2,17 +2,18 @@ class AuthenticableEntity
   MAXIMUM_USEFUL_DATES     = 30.days
   EXPIRATION_DATES         = 2.days
   WARNING_EXPIRATION_DATES = 5.hours
-  REFRESH_ID_CHARACTERS    = 32
+  RENEW_ID_CHARACTERS      = 32
+  VERIFICATION_CODE_CHARACTERS = 64
 
   class << self
     def generate_access_token(entity)
-      refresh_id = Devise.friendly_token(REFRESH_ID_CHARACTERS)
+      renew_id = Devise.friendly_token(RENEW_ID_CHARACTERS)
       payload = { "#{entity.class.name.underscore}_id" => entity.id }
-      payload = add_secure_attrs(payload, refresh_id, entity)
-      { token: AuthenticationTokenManager.encode(payload), refresh_id: refresh_id }
+      payload = add_secure_attrs(payload, renew_id, entity)
+      { token: AuthenticationTokenManager.encode(payload), renew_id: renew_id }
     end
 
-    def refresh_access_token(decoded_auth_token)
+    def renew_access_token(decoded_auth_token)
       payload = decoded_auth_token
       now = Time.zone.now
       payload[:expiration_date] = expiration_date(now)
@@ -26,11 +27,11 @@ class AuthenticableEntity
 
     private
 
-    def add_secure_attrs(payload, refresh_id, client)
+    def add_secure_attrs(payload, renew_id, client)
       now = Time.zone.now
       payload.merge!(
         verification_code: client.verification_code,
-        refresh_id: refresh_id,
+        renew_id: renew_id,
         maximum_useful_date: maximum_useful_date(now),
         expiration_date: expiration_date(now),
         warning_expiration_date: warning_expiration_date(now)

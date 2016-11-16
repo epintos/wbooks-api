@@ -5,8 +5,8 @@ class AuthenticationManager
 
   attr_reader :headers
   delegate :warning_expiration_date_reached?, to: :decoded_auth_token
-  delegate :able_to_refresh?, to: :decoded_auth_token
-  delegate :valid_refresh_id?, to: :decoded_auth_token
+  delegate :able_to_renew?, to: :decoded_auth_token
+  delegate :valid_renew_id?, to: :decoded_auth_token
 
   def initialize(headers)
     @headers = headers
@@ -33,8 +33,8 @@ class AuthenticationManager
     @decoded_auth_token ||= AuthenticationTokenManager.decode(authorization_header)
   end
 
-  def refresh_access_token(decoded_auth_token)
-    AuthenticableEntity.refresh_access_token(decoded_auth_token)
+  def renew_access_token(decoded_auth_token)
+    AuthenticableEntity.renew_access_token(decoded_auth_token)
   end
 
   private

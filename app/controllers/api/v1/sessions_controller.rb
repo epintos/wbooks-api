@@ -1,14 +1,13 @@
 module Api
   module V1
-    class AuthenticationController < ApplicationController
-      skip_before_action :current_user, :authenticate_request,
-                         except: [:refresh_token, :invalid_all]
+    class SessionsController < ApplicationController
+      skip_before_action :current_user, :authenticate_request, except: [:renew, :invalidate_all]
 
-      def token
+      def create
         if authenticated_user?
           token_data = AuthenticableEntity.generate_access_token(user)
           render json: {
-            access_token: token_data[:token], refresh_id: token_data[:refresh_id]
+            access_token: token_data[:token], renew_id: token_data[:renew_id]
           }, status: :ok
         else
           render_error('Invalid email or password', :unauthorized)
@@ -17,24 +16,24 @@ module Api
 
       # TODO: Refactor and remove rubocop exception
       # rubocop:disable Metrics/AbcSize
-      def refresh_token
+      def renew
         if !authentication_manager.warning_expiration_date_reached?
           render_error('Warning expiration date has not been reached', :forbidden)
-        elsif !authentication_manager.valid_refresh_id?(refresh_token_params[:refresh_id])
-          render_error('Invalid refresh_id', :unauthorized)
-        elsif !authentication_manager.able_to_refresh?
+        elsif !authentication_manager.valid_renew_id?(renew_token_params[:renew_id])
+          render_error('Invalid renew_id', :unauthorized)
+        elsif !authentication_manager.able_to_renew?
           render_error('Access token is not valid anymore', :unauthorized)
         else
-          access_token = authentication_manager.refresh_access_token(current_user)
+          access_token = authentication_manager.renew_access_token(current_user)
           render json: { access_token: access_token }, status: :ok
         end
       end
       # rubocop:enable Metrics/AbcSize
 
-      def invalidate_tokens
+      def invalidate_all
         current_user.generate_verification_code
         if current_user.save
-          render nothing: true, status: :ok
+          head :ok
         else
           render json: { error: 'Error invalidating all tokens' }, status: 500
         end
@@ -59,8 +58,8 @@ module Api
         params.require(:authentication).permit(:email, :password)
       end
 
-      def refresh_token_params
-        params.require(:authentication).permit(:refresh_id)
+      def renew_token_params
+        params.require(:authentication).permit(:renew_id)
       end
 
       def authentication_manager

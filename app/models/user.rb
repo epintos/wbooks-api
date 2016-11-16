@@ -1,7 +1,4 @@
 class User < ApplicationRecord
-  # Constants
-  VERIFICATION_CODE_CHARACTERS = 64
-
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   validates :first_name, :last_name, presence: true

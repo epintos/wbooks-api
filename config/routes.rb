@@ -5,11 +5,10 @@ Rails.application.routes.draw do
   api_version(module: 'api/v1', path: { value: 'api/v1' }, defaults: { format: :json }) do
     resources :users do
       collection do
-        resources :auth, controller: :authentication, only: [] do
+        resources :sessions, only: [:create] do
           collection do
-            post :token
-            post :refresh_token
-            post :invalidate_tokens
+            post :renew
+            post :invalidate_all
           end
         end
       end

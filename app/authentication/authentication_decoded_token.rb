@@ -14,12 +14,12 @@ class AuthenticationDecodedToken < HashWithIndifferentAccess
     Time.zone.now.to_i >= self[:warning_expiration_date]
   end
 
-  def valid_refresh_id?(refresh_id)
-    return true unless self[:refresh_id].present? && refresh_id.present?
-    refresh_id == self[:refresh_id]
+  def valid_renew_id?(renew_id)
+    return true unless self[:renew_id].present? && renew_id.present?
+    renew_id == self[:renew_id]
   end
 
-  def able_to_refresh?
+  def able_to_renew?
     return true unless self[:expiration_date].present? && self[:maximum_useful_date].present?
     self[:expiration_date] < self[:maximum_useful_date]
   end
