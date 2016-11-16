@@ -9,10 +9,23 @@ module Api
         render json: book_suggestion
       end
 
+      def create
+        suggestion = BookSuggestion.build(book_suggestion_params)
+        if suggestion.save
+          head :created
+        else
+          render json: { error: suggestion.errors }, status: :unprocessable_entity
+        end
+      end
+
       private
 
       def book_suggestion
-        book_suggestion ||= BookSuggestion.find(params[:id])
+        @book_suggestion ||= BookSuggestion.find(params[:id])
+      end
+
+      def book_suggestion_params
+        params.require(:book_suggestion).permit(:title, :editorial, :price, :author, :link, :publisher, :year)
       end
     end
   end
