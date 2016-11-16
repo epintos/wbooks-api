@@ -55,7 +55,7 @@ module Api
 
       def authenticate_params
         # [:email, :password].each { |param| params.require(param) }
-        params.require(:authentication).permit(:email, :password)
+        params.require(:session).permit(:email, :password)
       end
 
       def renew_token_params
