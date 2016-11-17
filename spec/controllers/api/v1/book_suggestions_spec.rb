@@ -2,6 +2,7 @@ require 'rails_helper'
 
 describe Api::V1::BookSuggestionsController, type: :controller do
   let! (:book_suggestions) { create_list( :book_suggestion, 5) }
+  let! (:book_suggestion) { create(:book_suggestion)}
 
   describe  'GET #index' do
     context 'When fetching all the book suggestions'do
@@ -9,7 +10,7 @@ describe Api::V1::BookSuggestionsController, type: :controller do
         get :index
       end
 
-      it 'responsen with the book suggestions json' do
+      it 'responses with the book suggestions json' do
         expected = ActiveModel::Serializer::CollectionSerializer.new(
           book_suggestions, each_serializer: BookSuggestionSerializer
         ).to_json
@@ -21,4 +22,17 @@ describe Api::V1::BookSuggestionsController, type: :controller do
       end
     end
   end
+
+  describe 'GET #show' do
+    context 'When showing one book suggestion' do
+      before do
+        get :show, params: { id: book_suggestion.id }
+      end
+
+      it 'responses with the book suggestion related with the id ' do
+        expect(response_body) =~ book_suggestion.to_json
+      end
+    end
+  end
+
 end
