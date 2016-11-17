@@ -16,6 +16,7 @@ ActiveRecord::Schema.define(version: 20161116163337) do
   enable_extension "plpgsql"
 
   create_table "book_suggestions", force: :cascade do |t|
+    t.integer "user_id"
     t.string  "editorial"
     t.float   "price"
     t.string  "author"
@@ -23,6 +24,7 @@ ActiveRecord::Schema.define(version: 20161116163337) do
     t.string  "link"
     t.string  "publisher"
     t.integer "year"
+    t.index ["user_id"], name: "index_book_suggestions_on_user_id", using: :btree
   end
 
   create_table "books", force: :cascade do |t|
@@ -67,6 +69,7 @@ ActiveRecord::Schema.define(version: 20161116163337) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
+  add_foreign_key "book_suggestions", "users"
   add_foreign_key "rents", "books"
   add_foreign_key "rents", "users"
 end
