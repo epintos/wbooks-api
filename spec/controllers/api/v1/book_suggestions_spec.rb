@@ -1,11 +1,12 @@
 require 'rails_helper'
 
 describe Api::V1::BookSuggestionsController, type: :controller do
-  let! (:book_suggestions) { create_list( :book_suggestion, 5) }
-  let! (:book_suggestion) { create(:book_suggestion)}
-
+  include_context 'Authenticated User'
+  let!(:book_suggestion) { create(:book_suggestion) }
+  
   describe  'GET #index' do
-    context 'When fetching all the book suggestions'do
+    context 'When fetching all the book suggestions' do
+      let!(:book_suggestions) { create_list(:book_suggestion, 5) }
       before do
         get :index
       end
@@ -17,8 +18,8 @@ describe Api::V1::BookSuggestionsController, type: :controller do
         expect(response_body.to_json) =~ JSON.parse(expected)
       end
 
-       it 'responds with 200 status' do
-         expect(response).to have_http_status(:ok)
+      it 'responds with 200 status' do
+        expect(response).to have_http_status(:ok)
       end
     end
   end
@@ -35,4 +36,20 @@ describe Api::V1::BookSuggestionsController, type: :controller do
     end
   end
 
+  describe 'POST #create' do
+      context 'When creating a new book request' do
+        let(:new_book_suggestion_attrs) { attributes_for(:book_suggestion) }
+        before do
+        end
+        it 'creates a new book suggestion' do
+          expect do
+            post :create, params: { book_suggestion: new_book_suggestion_attrs }
+          end.to change { BookSuggestion.count }.by(1)
+        end
+        it 'responds with 201 status' do
+          post :create, params: { book_suggestion: new_book_suggestion_attrs }
+          expect(response).to have_http_status(:created)
+        end
+      end
+    end
 end

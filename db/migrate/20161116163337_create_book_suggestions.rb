@@ -8,6 +8,7 @@ class CreateBookSuggestions < ActiveRecord::Migration[5.0]
       t.string :link
       t.string :publisher
       t.integer :year
+      t.belongs_to :user
     end
   end
 end

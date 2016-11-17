@@ -23,6 +23,8 @@ ActiveRecord::Schema.define(version: 20161116163337) do
     t.string  "link"
     t.string  "publisher"
     t.integer "year"
+    t.integer "user_id"
+    t.index ["user_id"], name: "index_book_suggestions_on_user_id", using: :btree
   end
 
   create_table "books", force: :cascade do |t|
