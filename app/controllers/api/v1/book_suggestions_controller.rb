@@ -10,7 +10,7 @@ module Api
       end
 
       def create
-        suggestion = BookSuggestion.build(book_suggestion_params)
+        suggestion = current_user.book_suggestions.build(book_suggestion_params)
         if suggestion.save
           head :created
         else
