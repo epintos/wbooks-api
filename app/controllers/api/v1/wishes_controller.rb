@@ -10,7 +10,7 @@ module Api
       end
 
       def create
-        wish = current_user.wishes.build(wish_params)
+        @wish = current_user.wishes.build(wish_params)
         if wish.save
           head :created
         else
