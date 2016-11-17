@@ -1,6 +1,8 @@
 module Api
   module V1
     class BookSuggestionsController < ApplicationController
+      skip_before_action :current_user, :authenticate_request
+      
       def index
         render json: BookSuggestion.all.page(params[:page])
       end
