@@ -30,6 +30,9 @@ gem 'autoprefixer-rails'
 
 gem 'bootstrap-sass'
 
+# For backoffice administration
+gem 'activeadmin', github: 'activeadmin'
+
 # Use for processing images
 gem 'mini_magick'
 
@@ -50,7 +53,7 @@ gem 'foreman'
 
 # Active Admin
 gem 'inherited_resources', git: 'https://github.com/activeadmin/inherited_resources'
-gem 'activeadmin', git: 'https://github.com/activeadmin/activeadmin'
+# gem 'activeadmin', git: 'https://github.com/activeadmin/activeadmin'
 
 # Enables Slim templates
 gem 'slim-rails'
