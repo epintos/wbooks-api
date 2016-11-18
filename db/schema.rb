@@ -110,4 +110,6 @@ ActiveRecord::Schema.define(version: 20161117180907) do
   add_foreign_key "book_suggestions", "users"
   add_foreign_key "rents", "books"
   add_foreign_key "rents", "users"
+  add_foreign_key "wishes", "books"
+  add_foreign_key "wishes", "users"
 end
