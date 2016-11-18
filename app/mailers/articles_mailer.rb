@@ -7,7 +7,6 @@ class ArticlesMailer < ApplicationMailer
   #
   def latest(current_user)
     @greeting = "Hi"
-
     mail to: current_user.email, subject: "I'm Bravo, Johny Bravo."
   end
 end

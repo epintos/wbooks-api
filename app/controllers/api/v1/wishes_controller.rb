@@ -12,8 +12,8 @@ module Api
       def create
         @wish = current_user.wishes.build(wish_params)
         if wish.save
-          # ModelMailer.latest(current_user).deliver
           head :created
+          ArticlesMailer.latest(current_user).deliver
         else
           render json: { error: wish.errors }, status: :unprocessable_entity
         end

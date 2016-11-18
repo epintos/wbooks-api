@@ -10,6 +10,7 @@ require 'action_mailer/railtie'
 require 'action_view/railtie'
 require 'action_cable/engine'
 require 'sprockets/railtie'
+require 'dotenv'
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
@@ -21,8 +22,8 @@ module WbooksApi
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
 
-    # Dotenv::Railtie.load
-
+    Dotenv.load("variables.env")
+    
     if Rails.application.secrets.email_recipients_interceptors.present?
       Mail.register_interceptor RecipientInterceptor.new(
         Rails.application.secrets.email_recipients_interceptors,

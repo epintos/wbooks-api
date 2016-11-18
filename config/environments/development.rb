@@ -46,15 +46,15 @@ Rails.application.configure do
   config.assets.quiet = true
 
   # Mailing configuration
-  # config.action_mailer.delivery_method = :smtp
-  # config.action_mailer.smtp_settings = {
-  #   authentication: :plain,
-  #   address: "smtp.mailgun.org",
-  #   port: 587,
-  #   domain: ENV['DOMAIN_MAILGUN'],
-  #   user_name: ENV['USER_NAME_MAILGUN'],
-  #   password: ENV['PASSWORD_MAILGUN']
-  # }
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    authentication: :plain,
+    address: "smtp.mailgun.org",
+    port: 587,
+    domain: ENV['DOMAIN_MAILGUN'],
+    user_name: ENV['USER_NAME_MAILGUN'],
+    password: ENV['PASSWORD_MAILGUN']
+  }
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
