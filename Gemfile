@@ -30,6 +30,9 @@ gem 'autoprefixer-rails'
 
 gem 'bootstrap-sass'
 
+# For setting environment values
+gem 'dotenv-rails', :groups => [:development, :test]
+
 # For backoffice administration
 gem 'activeadmin', github: 'activeadmin'
 
