@@ -42,6 +42,8 @@ gem 'kaminari'
 gem 'devise'
 gem 'devise-async'
 
+gem 'activeadmin', github: 'activeadmin'
+
 gem 'responders'
 
 gem 'active_model_serializers'
@@ -50,7 +52,6 @@ gem 'foreman'
 
 # Active Admin
 gem 'inherited_resources', git: 'https://github.com/activeadmin/inherited_resources'
-gem 'activeadmin', git: 'https://github.com/activeadmin/activeadmin'
 
 # Enables Slim templates
 gem 'slim-rails'
