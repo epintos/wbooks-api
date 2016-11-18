@@ -20,6 +20,7 @@ Rails.application.routes.draw do
       end
     end
     resources :books, only: [:index, :show]
+    resources :book_suggestions, only: [:create, :index, :show]
   end
 
   require 'sidekiq/web'

@@ -1,34 +1,27 @@
 require 'rails_helper'
 
 RSpec.describe Wish, type: :model do
-  it 'should create a new wish' do
-    Wish.create user_id: 1, book_id: 10
-    expect(Wish.count).to eq(1)
+
+  it { should validate_presence_of(:user_id) }
+  it { should validate_presence_of(:book_id) }
+
+  subject(:wish) do
+    Wish.new(
+      user_id: user_id, book_id: book_id
+    )
   end
 
-  it 'should create different rows with different books' do
-    Wish.create user_id: 1, book_id: 10
-    Wish.create user_id: 1, book_id: 15
-    expect(Wish.count).to eq(2)
-  end
+  let!(:user_id) { create(:user).id }
+  let!(:book_id) { create(:book).id }
 
-  it 'should create different rows with different users' do
-    Wish.create user_id: 1, book_id: 10
-    Wish.create user_id: 2, book_id: 10
-    expect(Wish.count).to eq(2)
-  end
+  it { is_expected.to be_valid }
 
-  it "shouldn't create a duplicated row" do
-    Wish.create user_id: 1, book_id: 10
-    Wish.create user_id: 1, book_id: 10
-    expect(Wish.count).to eq(1)
-  end
-
-  it "shouldn't be valid if no user is specified" do
-    expect(Wish.create(book_id: 10)).to_not be_valid
-  end
-
-  it "shouldn't be valid if no book is specified" do
-    expect(Wish.create(user_id: 1)).to_not be_valid
+  describe '#create' do
+    context 'When a duplicated wish is created' do
+      it 'isn\'t valid' do
+        wish.save!
+        expect(Wish.create user_id: wish.user_id, book_id: wish.book_id ).to be_invalid
+      end
+    end
   end
 end
