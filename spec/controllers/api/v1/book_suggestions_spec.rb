@@ -30,7 +30,7 @@ describe Api::V1::BookSuggestionsController, type: :controller do
       end
 
       it 'responses with the book suggestion related with the id ' do
-        expect(response_body) =~ book_suggestion.to_json
+        expect(response_body) == book_suggestion.to_json
       end
     end
   end
