@@ -6,6 +6,9 @@ ActiveAdmin.setup do |config|
   #
   config.site_title = "Wbooks Api"
 
+  # To skip authentication from Devise
+  config.skip_before_action :authenticate_request
+
   # Set the link url for the title. For example, to take
   # users to your main site. Defaults to no link.
   #
