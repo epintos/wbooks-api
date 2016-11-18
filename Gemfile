@@ -30,8 +30,11 @@ gem 'autoprefixer-rails'
 
 gem 'bootstrap-sass'
 
-# For setting environment values
+# Use dotenv for setting environment values
 gem 'dotenv-rails', :groups => [:development, :test]
+
+# Use sidekiq for sending asynchronous mails
+gem 'sidekiq'
 
 # For backoffice administration
 gem 'activeadmin', github: 'activeadmin'
