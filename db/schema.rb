@@ -69,6 +69,15 @@ ActiveRecord::Schema.define(version: 20161116180218) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
+  create_table "wish_lists", force: :cascade do |t|
+    t.integer  "book_id"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["book_id"], name: "index_wish_lists_on_book_id", using: :btree
+    t.index ["user_id"], name: "index_wish_lists_on_user_id", using: :btree
+  end
+
   add_foreign_key "book_suggestions", "users"
   add_foreign_key "rents", "books"
   add_foreign_key "rents", "users"
