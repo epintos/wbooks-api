@@ -33,6 +33,9 @@ gem 'bootstrap-sass'
 # Use sidekiq for sending asynchronous mails
 gem 'sidekiq'
 
+# Use whenever for doing recurrent jobs
+gem 'whenever', :require => false
+
 # For backoffice administration
 gem 'activeadmin', github: 'activeadmin'
 
