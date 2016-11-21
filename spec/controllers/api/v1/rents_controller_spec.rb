@@ -45,11 +45,14 @@ describe Api::V1::RentsController, type: :controller do
   describe 'POST #create' do
     context 'When creating a valid user rent' do
       let!(:new_rent_attributes) { attributes_with_foreign_keys(:rent, user: user) }
-      before do
-        post :create, params: { id: user.id, rent: new_rent_attributes }
+      it 'creates a new rent' do
+        expect do
+          post :create, params: { id: user.id, rent: new_rent_attributes }
+        end.to change { Rent.count }.by(1)
       end
 
       it 'responds with 201 status' do
+        post :create, params: { id: user.id, rent: new_rent_attributes }
         expect(response).to have_http_status(:created)
       end
     end
@@ -58,6 +61,12 @@ describe Api::V1::RentsController, type: :controller do
       let!(:new_rent_attributes) { attributes_with_foreign_keys(:rent, book: nil) }
       before do
         post :create, params: { id: user.id, rent: new_rent_attributes }
+      end
+
+      it 'doesn\'t create a new rent' do
+        expect do
+          post :create, params: { id: user.id, rent: new_rent_attributes }
+        end.to change { Rent.count }.by(0)
       end
 
       it 'returns error messages' do
