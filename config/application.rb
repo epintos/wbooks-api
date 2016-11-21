@@ -22,8 +22,7 @@ module WbooksApi
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
 
-    Dotenv.load("variables.env")
-    
+    Dotenv.load(".env") if Rails.env.development? || Rails.env.test?
     if Rails.application.secrets.email_recipients_interceptors.present?
       Mail.register_interceptor RecipientInterceptor.new(
         Rails.application.secrets.email_recipients_interceptors,

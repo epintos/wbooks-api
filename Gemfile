@@ -30,9 +30,6 @@ gem 'autoprefixer-rails'
 
 gem 'bootstrap-sass'
 
-# Use dotenv for setting environment values
-gem 'dotenv-rails', :groups => [:development, :test]
-
 # Use sidekiq for sending asynchronous mails
 gem 'sidekiq'
 
@@ -111,6 +108,9 @@ group :development, :test do
 
   gem 'factory_girl_rails'
   gem 'faker'
+
+  # Use dotenv for setting environment values
+  gem 'dotenv-rails', :groups => [:development, :test]
 
   # Lints
   gem 'rubocop'

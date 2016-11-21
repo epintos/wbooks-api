@@ -13,7 +13,7 @@ module Api
         @wish = current_user.wishes.build(wish_params)
         if wish.save
           head :created
-          MailingWorker.perform_async(current_user.email)
+          WishesMailer.latest(current_user.email).deliver_later
         else
           render json: { error: wish.errors }, status: :unprocessable_entity
         end

@@ -49,14 +49,22 @@ Rails.application.configure do
   config.assets.quiet = true
 
   # Mailing configuration
+
+  config.active_job.queue_adapter = :sidekiq
+
+  config.action_mailer.perform_deliveries = true
+
+  config.action_mailer.raise_delivery_errors = true
+
   config.action_mailer.delivery_method = :smtp
+
   config.action_mailer.smtp_settings = {
     authentication: :plain,
     address: "smtp.mailgun.org",
     port: 587,
-    domain: ENV['DOMAIN_MAILGUN'],
-    user_name: ENV['USER_NAME_MAILGUN'],
-    password: ENV['PASSWORD_MAILGUN']
+    domain: Rails.application.secrets.domain_secret,
+    user_name: Rails.application.secrets.user_name_secret,
+    password: Rails.application.secrets.password_secret
   }
 
   # Raises error for missing translations
