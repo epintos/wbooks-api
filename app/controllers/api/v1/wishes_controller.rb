@@ -6,12 +6,15 @@ module Api
       end
 
       def show
+        @wish = wish
+        authorize @wish
         render json: wish
       end
 
       def create
-        @wish = current_user.wishes.build(wish_params)
-        if wish.save
+        @wish = Wish.new(wish_params)
+        authorize @wish
+        if @wish.save
           head :created
         else
           render json: { error: wish.errors }, status: :unprocessable_entity

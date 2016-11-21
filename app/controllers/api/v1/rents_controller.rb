@@ -6,12 +6,15 @@ module Api
       end
 
       def show
+        @rent = rent
+        authorize @rent
         render json: rent
       end
 
       def create
-        rent = current_user.rents.build(rent_params)
-        if rent.save
+        @rent = Rent.new(rent_params)
+        authorize @rent
+        if @rent.save
           head :created
         else
           render json: { error: rent.errors }, status: :unprocessable_entity

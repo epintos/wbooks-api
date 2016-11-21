@@ -1,10 +1,17 @@
 class ApplicationController < ActionController::Base
+  include Pundit
   rescue_from ActionController::ParameterMissing, with: :render_nothing_bad_req
   rescue_from ActiveRecord::RecordNotFound, with: :render_nothing_bad_req
+  rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
   protect_from_forgery with: :null_session
   before_action :current_user, :authenticate_request
 
   private
+
+  def user_not_authorized
+    flash[:warning] = "You are not authorized to perform this action."
+    redirect_to('/api/v1/users/' + current_user.id.to_s + '/wishes')
+  end
 
   # Serializer methods
   def default_serializer_options
