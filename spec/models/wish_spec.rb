@@ -17,10 +17,14 @@ RSpec.describe Wish, type: :model do
   it { is_expected.to be_valid }
 
   describe '#create' do
-    context 'When a duplicated wish is created' do
-      it 'isn\'t valid' do
+    context 'When another wish is created for the same book and user' do
+      let(:another_wish) { build(:wish, book: wish.book, user: user)
+      before do
         wish.save!
-        expect(Wish.create user_id: wish.user_id, book_id: wish.book_id ).to be_invalid
+      end
+      it 'is invalid' do
+       another_wish.save!
+       expect(another_wish).to be_invalid
       end
     end
   end
