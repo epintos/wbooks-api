@@ -2,9 +2,9 @@ class ExpiredRentWorker
   include Sidekiq::Worker
 
   def perform
-    Rent.all.each do |rent|
+    Rent.find_each do |rent|
       if rent.to == Date.tomorrow then
-        ExpiredRentMailer.expired_rent(rent.user.email).deliver_later
+        ExpiredRentMailer.expired_rent(rent).deliver_later
       end
     end
   end

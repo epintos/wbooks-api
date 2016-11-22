@@ -91,9 +91,13 @@ ActiveRecord::Schema.define(version: 20161117180904) do
     t.integer  "book_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["book_id"], name: "index_wishes_on_book_id", using: :btree
+    t.index ["user_id"], name: "index_wishes_on_user_id", using: :btree
   end
 
   add_foreign_key "book_suggestions", "users"
   add_foreign_key "rents", "books"
   add_foreign_key "rents", "users"
+  add_foreign_key "wishes", "books"
+  add_foreign_key "wishes", "users"
 end
