@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe Wish, type: :model do
-
   it { should validate_presence_of(:user_id) }
   it { should validate_presence_of(:book_id) }
 
@@ -18,13 +17,13 @@ RSpec.describe Wish, type: :model do
 
   describe '#create' do
     context 'When another wish is created for the same book and user' do
-      let(:another_wish) { build(:wish, book: wish.book, user: user)
+      let(:another_wish) { build(:wish, book: wish.book, user: wish.user) }
       before do
         wish.save!
       end
       it 'is invalid' do
-       another_wish.save!
-       expect(another_wish).to be_invalid
+        another_wish.save
+        expect(another_wish).to be_invalid
       end
     end
   end
