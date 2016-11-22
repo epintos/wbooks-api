@@ -10,7 +10,7 @@ module Api
       end
 
       def create
-        rent = current_user.rents.build(rent_params)
+        @rent = current_user.rents.build(rent_params)
         if rent.save
           head :created
         else
