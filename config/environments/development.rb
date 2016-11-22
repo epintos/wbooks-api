@@ -62,6 +62,9 @@ Rails.application.configure do
     Bullet.add_footer = true
   end
 
+  config.active_job.queue_adapter = :sidekiq
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.raise_delivery_errors = true
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
     authentication: :plain,
@@ -71,4 +74,9 @@ Rails.application.configure do
     user_name: Rails.application.secrets.mailer_user_name,
     password: Rails.application.secrets.mailer_password
   }
+
+
+
+
+
 end
