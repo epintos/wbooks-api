@@ -1,4 +1,4 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: 'library@wolox.com'
+  default from: 'wbooks@wolox.com.ar'
   layout 'mailer'
 end
