@@ -2,19 +2,18 @@ module Api
   module V1
     class WishesController < ApplicationController
       def index
-        render json: current_user.wishes.page(params[:page])
+        render json: policy_scope(Wish).page(params[:page])
       end
 
       def show
-        @wish = wish
-        authorize @wish
+        authorize wish
         render json: wish
       end
 
       def create
         @wish = Wish.new(wish_params)
-        authorize @wish
-        if @wish.save
+        authorize wish
+        if wish.save
           head :created
         else
           render json: { error: wish.errors }, status: :unprocessable_entity

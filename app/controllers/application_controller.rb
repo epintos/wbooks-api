@@ -9,8 +9,7 @@ class ApplicationController < ActionController::Base
   private
 
   def user_not_authorized
-    flash[:warning] = "You are not authorized to perform this action."
-    redirect_to('/api/v1/users/' + current_user.id.to_s + '/wishes')
+    render json: { error: 'You are not authorized.' }, status: :unauthorized
   end
 
   # Serializer methods

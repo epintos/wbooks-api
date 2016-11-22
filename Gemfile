@@ -34,7 +34,7 @@ gem 'bootstrap-sass'
 gem 'sidekiq'
 
 # Use whenever for doing recurrent jobs
-gem 'whenever', :require => false
+gem 'whenever', require: false
 
 # For backoffice administration
 gem 'activeadmin', github: 'activeadmin'
@@ -98,7 +98,8 @@ group :development do
   gem 'better_errors'
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
   gem 'web-console'
-  # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
+  # Spring speeds up development by keeping your application running in the background.
+  # Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
 end
@@ -113,7 +114,7 @@ group :development, :test do
   gem 'faker'
 
   # Use dotenv for setting environment values
-  gem 'dotenv-rails', :groups => [:development, :test]
+  gem 'dotenv-rails', groups: [:development, :test]
 
   # Lints
   gem 'rubocop'
