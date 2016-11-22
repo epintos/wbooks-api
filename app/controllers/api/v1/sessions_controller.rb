@@ -46,19 +46,19 @@ module Api
       end
 
       def authenticated_user?
-        user.present? && user.valid_password?(sessions_params[:password])
+        user.present? && user.valid_password?(session_params[:password])
       end
 
       def user
-        @user ||= User.find_by(email: sessions_params[:email])
+        @user ||= User.find_by(email: session_params[:email])
       end
 
-      def sessions_params
-        params.require(:sessions).permit(:email, :password)
+      def session_params
+        params.require(:session).permit(:email, :password)
       end
 
       def renew_token_params
-        params.require(:sessions).permit(:renew_id)
+        params.require(:session).permit(:renew_id)
       end
 
       def authentication_manager

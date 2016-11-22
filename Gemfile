@@ -30,6 +30,15 @@ gem 'autoprefixer-rails'
 
 gem 'bootstrap-sass'
 
+# Use sidekiq for sending asynchronous mails
+gem 'sidekiq'
+
+# Use whenever for doing recurrent jobs
+gem 'whenever', :require => false
+
+# For backoffice administration
+gem 'activeadmin', github: 'activeadmin'
+
 # Use for processing images
 gem 'mini_magick'
 
@@ -50,7 +59,7 @@ gem 'foreman'
 
 # Active Admin
 gem 'inherited_resources', git: 'https://github.com/activeadmin/inherited_resources'
-gem 'activeadmin', git: 'https://github.com/activeadmin/activeadmin'
+# gem 'activeadmin', git: 'https://github.com/activeadmin/activeadmin'
 
 # Enables Slim templates
 gem 'slim-rails'
@@ -102,6 +111,9 @@ group :development, :test do
 
   gem 'factory_girl_rails'
   gem 'faker'
+
+  # Use dotenv for setting environment values
+  gem 'dotenv-rails'
 
   # Lints
   gem 'rubocop'
