@@ -61,4 +61,14 @@ Rails.application.configure do
     Bullet.rails_logger = true
     Bullet.add_footer = true
   end
+
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    authentication: :plain,
+    address: 'smtp.mailgun.org',
+    port: 587,
+    domain: Rails.application.secrets.mailer_domain,
+    user_name: Rails.application.secrets.mailer_user_name,
+    password: Rails.application.secrets.mailer_password
+  }
 end
