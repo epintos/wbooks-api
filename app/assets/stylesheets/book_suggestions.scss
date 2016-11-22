@@ -1,0 +1,35 @@
+.top-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: auto;
+  height: 260px;
+  background-image: asset-url("books.jpg");
+  color: white;
+
+  .header {
+    font-size: 100px;
+  }
+
+  .sub-header {
+    font-size: 50px;
+  }
+}
+
+.bottom-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: auto;
+  height: auto;
+
+  .form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: space-around;
+    width: 1000px;
+    height: auto;
+  }
+}
