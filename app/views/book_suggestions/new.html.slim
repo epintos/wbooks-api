@@ -20,3 +20,24 @@
           = f.label :link
           = f.text_field(:link, class: "insert")
           = f.submit class: "submit"
+
+          .suggestions-container
+            - if @book_suggestion_list
+              - @book_suggestion_list.each do |book_suggestion|
+                - @book_sugg = BookSuggestion.new(book_suggestion)
+                h3 
+                  | Suggestion Nº:   
+                  = @book_sugg.id
+                .content-container
+                  h4
+                    | Title: 
+                    = @book_sugg.title
+                  h4
+                    | Author: 
+                    = @book_sugg.author
+                  h4
+                    | Year: 
+                    = @book_sugg.year
+                  h4
+                    | Link: 
+                    = @book_sugg.link

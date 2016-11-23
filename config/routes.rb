@@ -24,6 +24,7 @@ Rails.application.routes.draw do
   end
 
   resources :book_suggestions, only: [:create, :new]
+  get '/book_suggestions' => redirect('/book_suggestions/new')
 
   require 'sidekiq/web'
   mount Sidekiq::Web, at: 'sidekiq'
