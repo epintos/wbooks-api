@@ -5,11 +5,21 @@
     | Fill out the form below to make your suggestion
 .bottom-container
   form.form
-    input.insert-title type="text"
-    input.insert-author type="text"
+    label for="name"
+      | Name
+    input.insert-title name="name" type="text"
+    label for="author"
+      | Author
+    input.insert-author name="author" type="text"
     .container-line
-      input.insert-year type="text"
-      input.insert-edition type="text"
-    input.insert-link type="text"
+      label for="year"
+        | Year
+      input.insert-year name="year" type="text"
+      label for="edition"
+        | Edition
+      input.insert-edition name="edition" type="text"
+    label for="link"
+      | Link to to the book store (Optional)
+    input.insert-link name="link" type="text"
     button.submit type="submit" 
       | Submit  
