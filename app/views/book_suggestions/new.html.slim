@@ -5,19 +5,18 @@
     h2.sub-header
       | Fill out the form below to make your suggestion
     .bottom-container
-      form.form
-        label for="name"
-          | Name
-        input.insert.title name="name" type="text"
-        label for="author"
-          | Author
-        input.insert.author name="author" type="text"
-        .container-line
-          label for="year"
-            | Year (Optional)
-          input.insert.year name="year" type="text"
-        label for="link"
-          | Link to to the book store (Optional)
-        input.insert.link name="link" type="text"
-        button.submit type="submit" 
-          | Submit  
+      .suggestion = form_for @book_suggestion do |f|
+          .errors
+            - @book_suggestion.errors.full_messages.each do |msg|
+              li = msg
+          = f.label :title
+          = f.text_field :title, class: "insert"
+          = f.label :author
+          = f.text_field :author, class: "insert"
+          = f.label :editorial
+          = f.text_field :editorial, class: "insert"
+          = f.label :year
+          = f.text_field :year, class: "insert"
+          = f.label :link
+          = f.text_field(:link, class: "insert")
+          = f.submit class: "submit"
