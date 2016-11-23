@@ -42,8 +42,6 @@ describe Api::V1::BookSuggestionsController, type: :controller do
   describe 'POST #create' do
       context 'When creating a new book request' do
         let(:new_book_suggestion_attrs) { attributes_for(:book_suggestion) }
-        before do
-        end
         it 'creates a new book suggestion' do
           expect do
             post :create, params: { book_suggestion: new_book_suggestion_attrs }
