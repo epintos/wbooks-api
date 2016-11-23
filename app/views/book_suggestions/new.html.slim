@@ -1,25 +1,23 @@
 .top-container
-  h1.header
-    | Create a new book suggestion!
-  h2.sub-header
-    | Fill out the form below to make your suggestion
-.bottom-container
-  form.form
-    label for="name"
-      | Name
-    input.insert-title name="name" type="text"
-    label for="author"
-      | Author
-    input.insert-author name="author" type="text"
-    .container-line
-      label for="year"
-        | Year
-      input.insert-year name="year" type="text"
-      label for="edition"
-        | Edition
-      input.insert-edition name="edition" type="text"
-    label for="link"
-      | Link to to the book store (Optional)
-    input.insert-link name="link" type="text"
-    button.submit type="submit" 
-      | Submit  
+  .inside-container
+    h1.header
+      | Create a new book suggestion!
+    h2.sub-header
+      | Fill out the form below to make your suggestion
+    .bottom-container
+      form.form
+        label for="name"
+          | Name
+        input.insert.title name="name" type="text"
+        label for="author"
+          | Author
+        input.insert.author name="author" type="text"
+        .container-line
+          label for="year"
+            | Year (Optional)
+          input.insert.year name="year" type="text"
+        label for="link"
+          | Link to to the book store (Optional)
+        input.insert.link name="link" type="text"
+        button.submit type="submit" 
+          | Submit  
