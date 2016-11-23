@@ -26,7 +26,7 @@ describe Api::V1::BookSuggestionsController, type: :controller do
 
   describe 'GET #show' do
     context 'When showing one book suggestion' do
-      let! (:book_suggestion) { create(:book_suggestion) }
+      let!(:book_suggestion) { create(:book_suggestion) }
       before do
         get :show, params: { id: book_suggestion.id }
       end
@@ -40,17 +40,17 @@ describe Api::V1::BookSuggestionsController, type: :controller do
   end
 
   describe 'POST #create' do
-      context 'When creating a new book request' do
-        let(:new_book_suggestion_attrs) { attributes_for(:book_suggestion) }
-        it 'creates a new book suggestion' do
-          expect do
-            post :create, params: { book_suggestion: new_book_suggestion_attrs }
-          end.to change { BookSuggestion.count }.by(1)
-        end
-        it 'responds with 201 status' do
+    context 'When creating a new book request' do
+      let(:new_book_suggestion_attrs) { attributes_for(:book_suggestion) }
+      it 'creates a new book suggestion' do
+        expect do
           post :create, params: { book_suggestion: new_book_suggestion_attrs }
-          expect(response).to have_http_status(:created)
-        end
+        end.to change { BookSuggestion.count }.by(1)
+      end
+      it 'responds with 201 status' do
+        post :create, params: { book_suggestion: new_book_suggestion_attrs }
+        expect(response).to have_http_status(:created)
       end
     end
+  end
 end

@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   # API Endpoints
   api_version(module: 'api/v1', path: { value: 'api/v1' }, defaults: { format: :json }) do
-    resources :users do
+    resources :users, only: [:show, :update] do
       collection do
         resources :sessions, only: [:create] do
           collection do
@@ -13,10 +13,11 @@ Rails.application.routes.draw do
         end
       end
       member do
+        resources :wishes, only: [:index, :show, :create]
         resources :rents, only: [:create, :destroy, :index, :show]
       end
     end
-    resources :books, only: [:index, :show]
+    resources :books, only: [:index, :show, :create]
     resources :book_suggestions, only: [:create, :index, :show]
   end
 
