@@ -3,6 +3,17 @@ html
   head
     meta content=("text/html; charset=utf-8") http-equiv="Content-Type" /
     css:
-      /!* Email styles need to be inline */
+      @import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700');
+       {
+         font-family: 'Open Sans', sans-serif;
+       }
+      .container {
+        display: flex;
+        background:#0CA6C4;
+        color:#383838;        
+      }
+      .container-body {
+        font-style: italic;
+      }
   body
     = yield

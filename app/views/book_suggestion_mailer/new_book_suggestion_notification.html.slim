@@ -1,0 +1,20 @@
+.container
+  h2 
+    |Hi 
+    = @book_suggestion.user.first_name
+    | ,  
+    | you've made a book suggestion
+.container-body  
+  h3 
+      |Created at: 
+      = @book_suggestion.user.created_at.strftime("%d/%m/%Y")    
+  ul
+    li
+       | Title: 
+       = @book_suggestion.title       
+    li
+       | Author:
+       = @book_suggestion.author
+    li
+       | Link:
+       = @book_suggestion.link

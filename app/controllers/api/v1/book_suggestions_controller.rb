@@ -12,11 +12,12 @@ module Api
       end
 
       def create
-        suggestion = current_user.book_suggestions.build(book_suggestion_params)
-        if suggestion.save
+        @book_suggestion = current_user.book_suggestions.build(book_suggestion_params)
+        if book_suggestion.save
+          BookSuggestionMailer.new_book_suggestion_notification(book_suggestion).deliver_now
           head :created
         else
-          render json: { error: suggestion.errors }, status: :unprocessable_entity
+          render json: { error: book_suggestion.errors }, status: :unprocessable_entity
         end
       end
 
