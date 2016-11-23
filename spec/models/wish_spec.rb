@@ -23,7 +23,8 @@ RSpec.describe Wish, type: :model do
         wish.save!
       end
       it 'is invalid' do
-        expect(another_wish.save).to be_falsey
+       another_wish.save
+       expect(another_wish).to be_invalid
       end
     end
   end

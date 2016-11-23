@@ -26,9 +26,6 @@ Rails.application.configure do
     config.cache_store = :null_store
   end
 
-  # Config workers
-  config.autoload_paths += %W(#{config.root}/app/workers)
-
   # Don't care if the mailer can't send.
   config.action_mailer.raise_delivery_errors = false
 

@@ -114,7 +114,7 @@ group :development, :test do
   gem 'faker'
 
   # Use dotenv for setting environment values
-  gem 'dotenv-rails', groups: [:development, :test]
+  gem 'dotenv-rails'
 
   # Lints
   gem 'rubocop'

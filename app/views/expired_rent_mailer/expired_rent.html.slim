@@ -1,10 +1,15 @@
 h2 Book rent expires tomorrow
+h3 = @rent.book.title
 p 
   | Hello   
+  = @rent.user.first_name
+  |,
   br
-  | Your rent of the book is going to expire tomorrow.
+  | Your rent of the book '
+  = @rent.book.title
+  |', is going to expire tomorrow.
   br
-  | Please be sure of extending your rent or return the book.
+  | Please be sure of extend your rent or return the book.
   br
   | Thank you!
   br
