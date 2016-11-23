@@ -15,7 +15,7 @@ describe BookSuggestion, type: :model do
   let(:title) { Faker::Book.title }
   let(:author) { Faker::Book.author }
   let(:publisher) { Faker::Book.publisher }
-  let(:link) { Faker::Internet.url}
+  let(:link) { Faker::Internet.url }
   let(:price) { Faker::Commerce.price }
   let(:editorial) { Faker::Company.name }
   let(:year) { Faker::Date.between(50.years.ago, 1.year.ago).year }
