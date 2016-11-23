@@ -2,9 +2,17 @@ class ApplicationController < ActionController::Base
   rescue_from ActionController::ParameterMissing, with: :render_nothing_bad_req
   rescue_from ActiveRecord::RecordNotFound, with: :render_nothing_bad_req
   protect_from_forgery with: :null_session
-  before_action :current_user, :authenticate_request
+  before_action :current_user, :authenticate_request, :set_locale
 
   private
+
+  def set_locale
+    if current_user.present? && current_user.locale.present?
+      I18n.locale = current_user.try(:locale)
+    else
+      I18n.locale = I18n.default_locale
+    end
+  end
 
   # Serializer methods
   def default_serializer_options

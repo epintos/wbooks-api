@@ -61,6 +61,9 @@ gem 'sinatra', require: nil
 gem 'sidekiq-failures'
 gem 'sidekiq_mailer'
 
+# I18n
+gem 'rails-i18n', '~> 5.0.0' # For 5.0.x
+
 # Authorization Policies
 gem 'pundit'
 

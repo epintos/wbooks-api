@@ -1,20 +1,24 @@
 .container
   h2 
-    |Hi 
-    = @book_suggestion.user.first_name
+    = t :Hi
+    =< @book_suggestion.user.first_name
     | ,  
-    | you've made a book suggestion
+    = t :you_made_a_book_suggestion
 .container-body  
   h3 
-      |Created at: 
+      = t :created_at
+      |: 
       = @book_suggestion.user.created_at.strftime("%d/%m/%Y")    
   ul
     li
-       | Title: 
+       = t :title
+       |: 
        = @book_suggestion.title       
     li
-       | Author:
+       = t :author
+       |: 
        = @book_suggestion.author
     li
-       | Link:
+       = t :link
+       |: 
        = @book_suggestion.link
