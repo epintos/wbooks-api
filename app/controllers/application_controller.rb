@@ -7,11 +7,11 @@ class ApplicationController < ActionController::Base
   private
 
   def set_locale
-    if current_user.present? && current_user.locale.present?
-      I18n.locale = current_user.locale
-    else
-      I18n.locale = I18n.default_locale
-    end
+    I18n.locale = if current_user.present? && current_user.locale.present?
+                    current_user.locale
+                  else
+                    I18n.default_locale
+                  end
   end
 
   # Serializer methods
