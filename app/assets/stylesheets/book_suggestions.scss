@@ -21,6 +21,14 @@
   }
 }
 
+.obligatory {
+  display: flex;
+  flex-direction: row;
+  .red {
+    color: $red;
+  }
+}
+
 .inside-container {
   height: auto;
   width: auto;

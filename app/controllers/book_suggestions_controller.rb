@@ -1,31 +1,28 @@
 class BookSuggestionsController < ApplicationController
   skip_before_action :authenticate_request
 
-  @@book_suggestion_list_persistent = []
-
   def new
-    @book_suggestion_list = @@book_suggestion_list_persistent
+    @book_suggestion_list = previous_suggestions
     @book_suggestion = BookSuggestion.new
   end
 
   def create
     @book_suggestion = BookSuggestion.new(book_suggestion_params)
     if @book_suggestion.save
-      book_suggestion_list
-      redirect_to new_book_suggestion_path
+      previous_suggestions.push(@book_suggestion.attributes)
     else
-      @book_suggestion_list = @@book_suggestion_list_persistent
-      render 'new'
+      flash[:errors]  = @book_suggestion.errors.full_messages
     end
+    redirect_to new_book_suggestion_path
   end
 
   private
 
   def book_suggestion_params
-    params.require(:book_suggestion).permit(:title, :editorial, :author, :link, :year)
+    params.require(:book_suggestion).permit(BookSuggestion::PERMITTED_PARAMS)
   end
 
-  def book_suggestion_list
-    @@book_suggestion_list_persistent << @book_suggestion.attributes
+  def previous_suggestions
+    session[:previous_suggestions] ||= []
   end
 end
