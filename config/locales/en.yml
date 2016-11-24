@@ -21,3 +21,22 @@
 
 en:
   hello: "Hello world"
+  new_suggestion_header: 'Create a new book suggestion!'
+  new_suggestion_sub_header: 'Fill out the form below to make your suggestion'
+  title: 'Title'
+  suggestion_numer: 'Suggestion Nº: '
+  activerecord:
+    attributes:
+      book_suggestion:
+        title: 'Title'
+        author: 'Author'
+        publisher: 'Publisher'
+        editorial: 'Editorial'
+        year: 'Year'
+        link: 'Link'
+        price: 'Price'
+
+  helpers:
+    submit:
+      post:
+        create: "Create book suggestion"

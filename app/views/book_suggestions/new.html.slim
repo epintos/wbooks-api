@@ -1,9 +1,9 @@
 .top-container
   .inside-container
     h1.header
-      | Create a new book suggestion!
+      = t :new_suggestion_header
     h2.sub-header
-      | Fill out the form below to make your suggestion
+      = t :new_suggestion_sub_header
     .bottom-container
       .suggestion = form_for @book_suggestion do |f|
         - if flash[:errors].present?
@@ -20,10 +20,10 @@
           .red
             | *
         = f.text_field :author, class: "insert"
-        = f.label :editorial
-        = f.text_field :editorial, class: "insert"
         = f.label :publisher
         = f.text_field :publisher, class: "insert"
+        = f.label :editorial
+        = f.text_field :editorial, class: "insert"
         = f.label :year
         = f.text_field :year, class: "insert"
         .obligatory
@@ -40,24 +40,34 @@
             - @book_suggestion_list.each do |book_suggestion|
               - @book_sugg = BookSuggestion.new(book_suggestion)
               h3 
-                | Suggestion Nº:   
+                = t :suggestion_numer
                 = @book_sugg.id
               .content-container
                 h4
-                  | Title: 
+                  = t :title
+                  | : 
                   = @book_sugg.title
                 h4
-                  | Author: 
+                  = t :author
+                  | :  
                   = @book_sugg.author
                 h4
-                  | Publisher: 
+                  = t :publisher
+                  | : 
                   = @book_sugg.publisher
                 h4
-                  | Year: 
+                  = t :editorial
+                  | : 
+                  = @book_sugg.editorial
+                h4
+                  = t :year
+                  | : 
                   = @book_sugg.year
                 h4
-                  | Link: 
+                  = t :link
+                  | : 
                   = @book_sugg.link
                 h4
-                  | Price: 
+                  = t :price
+                  | : 
                   = @book_sugg.price

@@ -5,8 +5,13 @@ class ApplicationController < ActionController::Base
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
   protect_from_forgery with: :null_session
   before_action :current_user, :authenticate_request
+  before_action :set_locale
 
   private
+
+  def set_locale
+    I18n.locale = params[:locale] || I18n.default_locale
+  end
 
   def user_not_authorized
     render json: { error: 'You are not authorized.' }, status: :unauthorized
