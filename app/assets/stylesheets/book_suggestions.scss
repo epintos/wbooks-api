@@ -4,11 +4,11 @@
   width: 100%;
   min-height: 100vh;
   background-image: asset-url("wolox-bg.png");
-  color: $black;
 
   .header {
     font-size: 90px;
     color: $light-blue;
+    margin-top: -15px;
   }
 
   .sub-header {
@@ -33,7 +33,7 @@
   align-items: center;
   flex-direction: column;
   background: $white;
-  padding: 20px;
+  padding: 0 20px;
   position: relative;
 }
 
@@ -94,6 +94,11 @@
   &:hover {
     background-color: $dark-green;
   }
+}
+
+.language {
+  width: 100%;
+  float: right;
 }
 
 @media screen and (max-width: 600px) {
