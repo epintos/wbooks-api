@@ -23,8 +23,9 @@ en:
   hello: "Hello world"
   new_suggestion_header: 'Create a new book suggestion!'
   new_suggestion_sub_header: 'Fill out the form below to make your suggestion'
-  title: 'Title'
   suggestion_numer: 'Suggestion Nº: '
+  languages: 'Lang'
+
   activerecord:
     attributes:
       book_suggestion:

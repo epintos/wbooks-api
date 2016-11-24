@@ -24,6 +24,7 @@ es:
   new_suggestion_header: 'Sugeri un nuevo libro!'
   new_suggestion_sub_header: 'Rellena el formulario para sugerir tu libro'
   suggestion_numer: 'Sugerencia Nº: '
+  languages: 'Idioma'
 
   activerecord:
     attributes:
