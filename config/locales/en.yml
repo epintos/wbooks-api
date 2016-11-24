@@ -20,9 +20,9 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  Hi_: Hi
+  Hi: Hi
   you_made_a_book_suggestion: you made a book suggestion
-  created_at: Created at
-  title: Title
-  author: Author
-  link: Link
+  book_suggestions:
+    title: Title
+    author: Author
+    link: Link

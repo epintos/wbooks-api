@@ -14,7 +14,7 @@ module Api
       def create
         @book_suggestion = current_user.book_suggestions.build(book_suggestion_params)
         if book_suggestion.save
-          BookSuggestionMailer.new_book_suggestion_notification(book_suggestion).deliver_now
+          BookSuggestionMailer.new_book_suggestion_notification(book_suggestion).deliver_later
           head :created
         else
           render json: { error: book_suggestion.errors }, status: :unprocessable_entity

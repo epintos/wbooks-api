@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
 
   def set_locale
     if current_user.present? && current_user.locale.present?
-      I18n.locale = current_user.try(:locale)
+      I18n.locale = current_user.locale
     else
       I18n.locale = I18n.default_locale
     end

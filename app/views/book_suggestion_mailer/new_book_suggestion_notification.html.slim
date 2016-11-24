@@ -1,24 +1,21 @@
 .container
   h2 
-    = t :Hi
+    = t('Hi')
     =< @book_suggestion.user.first_name
     | ,  
-    = t :you_made_a_book_suggestion
+    = t('you_made_a_book_suggestion')
 .container-body  
-  h3 
-      = t :created_at
-      |: 
-      = @book_suggestion.user.created_at.strftime("%d/%m/%Y")    
-  ul
-    li
-       = t :title
-       |: 
-       = @book_suggestion.title       
-    li
-       = t :author
-       |: 
-       = @book_suggestion.author
-    li
-       = t :link
-       |: 
-       = @book_suggestion.link
+  h3       
+    ul
+      li
+         = t('book_suggestions.title')
+         |: 
+         = @book_suggestion.title       
+      li
+         = t('book_suggestions.author')
+         |: 
+         = @book_suggestion.author
+      li
+         = t('book_suggestions.link')
+         |: 
+         = @book_suggestion.link
