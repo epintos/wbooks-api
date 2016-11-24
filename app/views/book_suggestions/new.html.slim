@@ -1,0 +1,63 @@
+.top-container
+  .inside-container
+    h1.header
+      | Create a new book suggestion!
+    h2.sub-header
+      | Fill out the form below to make your suggestion
+    .bottom-container
+      .suggestion = form_for @book_suggestion do |f|
+        - if flash[:errors].present?
+          .errors
+            - flash[:errors].each do |msg|
+              li = msg
+        .obligatory
+          = f.label :title
+          .red
+            | *
+        = f.text_field :title, class: "insert"
+        .obligatory
+          = f.label :author 
+          .red
+            | *
+        = f.text_field :author, class: "insert"
+        = f.label :editorial
+        = f.text_field :editorial, class: "insert"
+        = f.label :publisher
+        = f.text_field :publisher, class: "insert"
+        = f.label :year
+        = f.text_field :year, class: "insert"
+        .obligatory
+          = f.label :link
+          .red
+            | *
+        = f.text_field(:link, class: "insert")
+        = f.label :price
+        = f.text_field(:price, class: "insert")
+        = f.submit class: "submit"
+
+        .suggestions-container
+          - if @book_suggestion_list
+            - @book_suggestion_list.each do |book_suggestion|
+              - @book_sugg = BookSuggestion.new(book_suggestion)
+              h3 
+                | Suggestion Nº:   
+                = @book_sugg.id
+              .content-container
+                h4
+                  | Title: 
+                  = @book_sugg.title
+                h4
+                  | Author: 
+                  = @book_sugg.author
+                h4
+                  | Publisher: 
+                  = @book_sugg.publisher
+                h4
+                  | Year: 
+                  = @book_sugg.year
+                h4
+                  | Link: 
+                  = @book_sugg.link
+                h4
+                  | Price: 
+                  = @book_sugg.price

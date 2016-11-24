@@ -35,7 +35,6 @@ module Api
       def rent
         @rent ||= current_user.rents.find(params[:id])
       end
-
     end
   end
 end
