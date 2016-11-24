@@ -1,12 +1,8 @@
 .top-container {
   display: flex;
-  flex-direction: column;
   justify-content: center;
-  align-items: center;
   width: 100%;
-  height: auto;
-  min-height: 100%;
-  position: absolute;
+  min-height: 100vh;
   background-image: asset-url("wolox-bg.png");
   color: $black;
 
@@ -45,17 +41,14 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: auto;
-  height: auto;
   padding: 20px;
 
   .suggestion {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    align-items: space-around;
-    width: 1000px;
-    height: auto;
+    width: 100%;
+    max-width: 1000px;
   }
 }
 
@@ -100,5 +93,11 @@
 
   &:hover {
     background-color: $dark-green;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .top-container {
+    justify-content: flex-start;
   }
 }
