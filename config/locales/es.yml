@@ -21,3 +21,23 @@
 
 es:
   hello: "Hola mundo"
+  new_suggestion_header: 'Sugeri un nuevo libro!'
+  new_suggestion_sub_header: 'Rellena el formulario para sugerir tu libro'
+  suggestion_numer: 'Sugerencia Nº: '
+  languages: 'Idioma'
+
+  activerecord:
+    attributes:
+      book_suggestion:
+        title: 'Titulo'
+        author: 'Autor'
+        publisher: 'Editor'
+        editorial: 'Editorial'
+        year: 'Año'
+        link: 'Link'
+        price: 'Precio'
+
+  helpers:
+    submit:
+      book_suggestion:
+        create: 'Crear sugerencia'
