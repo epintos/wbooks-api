@@ -58,7 +58,9 @@ describe Api::V1::RentsController, type: :controller do
     end
 
     context 'When creating an invalid user rent' do
-      let!(:new_rent_attributes) { attributes_with_foreign_keys(:rent, book: nil) }
+      let!(:new_rent_attributes) do
+        attributes_with_foreign_keys(:rent, book: nil, user: user)
+      end
       before do
         post :create, params: { id: user.id, rent: new_rent_attributes }
       end

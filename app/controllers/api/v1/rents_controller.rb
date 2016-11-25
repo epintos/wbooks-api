@@ -2,8 +2,7 @@ module Api
   module V1
     class RentsController < ApplicationController
       def index
-        @rent = policy_scope(Rent)
-        render json: current_user.rents.page(params[:page])
+        render json: policy_scope(Rent).page(params[:page])
       end
 
       def show
@@ -12,7 +11,8 @@ module Api
       end
 
       def create
-        authorize @rent = Rent.new(rent_params)
+        @rent = Rent.new(rent_params)
+        authorize rent
         if rent.save
           head :created
         else
@@ -21,6 +21,7 @@ module Api
       end
 
       def destroy
+        authorize rent
         rent.destroy
         head :ok
       end
