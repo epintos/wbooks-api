@@ -21,8 +21,10 @@
 
 en:
   Hi: Hi
-  you_made_a_book_suggestion: you made a book suggestion
   book_suggestions:
     title: Title
     author: Author
     link: Link
+    mailer:
+      subject: You made a new suggestion
+      message: you made a book suggestion
