@@ -3,10 +3,10 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
   validates :first_name, :last_name, presence: true
 
-  has_many :rents
-  has_many :book_suggestions
+  has_many :rents, dependent: :destroy
+  has_many :book_suggestions, dependent: :destroy
 
-  has_many :wishes
+  has_many :wishes, dependent: :destroy
 
   # Hooks
   before_validation :generate_verification_code, on: :create

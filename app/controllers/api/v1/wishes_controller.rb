@@ -2,7 +2,7 @@ module Api
   module V1
     class WishesController < ApplicationController
       def index
-        render json: current_user.wishes.page(params[:page])
+        render json: current_user.wishes.includes(:book).page(params[:page])
       end
 
       def show
