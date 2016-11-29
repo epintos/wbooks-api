@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css?family=Delius+Unicase');
+@import url('https://fonts.googleapis.com/css?family=Hind');
+
 .container-back {
   display: flex;
   width: 100%;
@@ -10,14 +13,98 @@
 
 .imgcontainer {
   display: flex;
-  background: $light-blue;
-  height: 50px;
-  width: 50px;
+  height: 200px;
+  width: 250px;
   margin-bottom: 30px;
 }
 
 .container-principal {
   display: flex;
-  flex-direction: column;
   color: $light-blue;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.suggestion_params {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+}
+
+.label {
+  color: $light-blue;
+  font-size: 15px;
+  font-family: 'Hind', sans-serif;
+}
+
+.submit {
+  border-radius: 10px;
+  border: 2px solid $white;
+  background-color: $light-blue;
+  color: $white;
+  font-size: 20px;
+  font-weight: bold;
+  padding: 5px;
+  margin:20px 25px;
+  font-family: 'Hind', sans-serif;
+  &:hover {background-color: $darker-light-blue};
+}
+
+.insert {
+  border-radius: 10px;
+  border: 1px solid $light-blue;
+  color: black;
+  width: 250px;
+  height: 30px;
+  margin-bottom: 20px;
+}
+
+.black-text {
+  color: $black;
+  font-family: 'Hind', sans-serif;
+}
+
+.title {
+  display: flex;
+  color: $light-blue;
+  margin-bottom: 50px;
+  font-family: 'Delius Unicase', cursive;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  width: 600px;
+  justify-content: space-around;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+}
+
+.row-two {
+  display: flex;
+  flex-direction: row;
+  }
+
+.row-three {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.error-text {
+  display: flex;
+  justify-content: center;
+  color: $red;
+}
+
+  @media screen and (max-width: 800px) {
+    .imgcontainer {
+      display: none;
+    }
+    .container-wrapper {
+        flex-wrap: wrap;
+    }
 }

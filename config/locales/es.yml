@@ -21,3 +21,15 @@
 
 es:
   hello: "Hola mundo"
+
+  view:
+    book_suggestion:
+        message: SUGERÍ UN NUEVO LIBRO
+        title: Título
+        author: Autor
+        link: Link
+        price: Precio
+        editorial: Editorial
+        publisher: Publisher
+        year: Año
+        submit: enviar

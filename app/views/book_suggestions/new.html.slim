@@ -1,14 +1,47 @@
 .container-back
-  .imgcontainer
-  .container-principal    
-    form
-      label
-        b Username 
-        br/
-      input.insert type="text"/
-      label
-        b Username2 
-      input.insert type="text"         
-      button.submit type='submit'
-          
-     
+  h1.title
+    = t('view.book_suggestion.message')
+  = image_tag('books1.jpg', class: 'imgcontainer')
+  .container-wrapper
+    .alert.alert-error.error-text
+    .container-principal
+        = form_for @book_suggestion, html: { id: "book_suggestion" } do |f| 
+          .row
+            .column
+              .row-two
+                = f.label t('view.book_suggestion.title')
+                spam.black-text
+                  | *
+              = f.text_field :title, class: "insert"
+            .column
+              .row-two
+                = f.label t('view.book_suggestion.author')
+                spam.black-text
+                  | *          
+              = f.text_field :author, class: "insert"
+          .row
+            .column    
+              = f.label t('view.book_suggestion.editorial')
+              = f.text_field :editorial, class: "insert"
+            .column   
+              = f.label :price
+              = f.text_field :price, class: "insert"
+          .row
+            .column    
+              = f.label t('view.book_suggestion.publisher')
+              = f.text_field :publisher, class: "insert"
+            .column
+              .row-two
+                = f.label t('view.book_suggestion.link')
+                spam.black-text
+                  | *   
+              = f.text_field :link, class: "insert"
+          .row
+            .column  
+              = f.label t('view.book_suggestion.year')
+              = f.text_field :year, class: "insert"
+          .container-principal    
+            = f.submit t('view.book_suggestion.submit') , class: "submit"
+        .book-suggestions-title
+        .book-suggestions-author
+         
