@@ -5,5 +5,6 @@ FactoryGirl.define do
     password { Faker::Internet.password }
     password_confirmation { password }
     email { Faker::Internet.email }
+    locale { %w(en es).sample }
   end
 end

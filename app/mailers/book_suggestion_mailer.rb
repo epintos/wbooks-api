@@ -8,6 +8,6 @@ class BookSuggestionMailer < ApplicationMailer
   def new_book_suggestion_notification(book_suggestion)
     @book_suggestion = book_suggestion
 
-    mail(to: book_suggestion.user.email, subject: 'You made a new suggestion')
+    mail(to: book_suggestion.user.email, subject: t('book_suggestions.mailer.subject'))
   end
 end

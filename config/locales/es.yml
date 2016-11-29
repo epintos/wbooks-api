@@ -20,4 +20,12 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 es:
-  hello: "Hola mundo"
+
+  Hi: Hola
+  book_suggestions:
+    title: Título
+    author: Autor
+    link: Link
+    mailer:
+      subject: Hiciste una nueva sugerencia
+      message: sugeriste un libro

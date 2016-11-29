@@ -7,13 +7,14 @@ describe User, type: :model do
   subject(:user) do
     User.new(
       first_name: first_name, last_name: last_name, email: email, password: password,
-      password_confirmation: password_confirmation
+      password_confirmation: password_confirmation, locale: locale
     )
   end
 
   let(:first_name) { Faker::Name.first_name }
   let(:last_name) { Faker::Name.last_name }
   let(:email) { Faker::Internet.email }
+  let(:locale) { %w(en es).sample }
   let(:password) { 'password' }
   let(:password_confirmation) { 'password' }
 

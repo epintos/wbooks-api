@@ -1,20 +1,21 @@
 .container
   h2 
-    |Hi 
-    = @book_suggestion.user.first_name
+    = t('Hi')
+    =< @book_suggestion.user.first_name
     | ,  
-    | you've made a book suggestion
+    = t('book_suggestions.mailer.message')
 .container-body  
-  h3 
-      |Created at: 
-      = @book_suggestion.user.created_at.strftime("%d/%m/%Y")    
-  ul
-    li
-       | Title: 
-       = @book_suggestion.title       
-    li
-       | Author:
-       = @book_suggestion.author
-    li
-       | Link:
-       = @book_suggestion.link
+  h3       
+    ul
+      li
+         = t('book_suggestions.title')
+         |: 
+         = @book_suggestion.title       
+      li
+         = t('book_suggestions.author')
+         |: 
+         = @book_suggestion.author
+      li
+         = t('book_suggestions.link')
+         |: 
+         = @book_suggestion.link
