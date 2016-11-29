@@ -19,7 +19,10 @@ Rails.application.routes.draw do
     end
     resources :books, only: [:index, :show, :create]
     resources :book_suggestions, only: [:create, :index, :show]
+    resources :book_suggestions, only: [:create], path: 'public/book_suggestions', controller: 'public_book_suggestions'
   end
+
+  resources :book_suggestions, only: [:new, :create]
 
   require 'sidekiq/web'
   mount Sidekiq::Web, at: 'sidekiq'

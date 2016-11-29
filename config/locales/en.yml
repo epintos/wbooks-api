@@ -21,3 +21,15 @@
 
 en:
   hello: "Hello world"
+
+  view:
+    book_suggestion:
+        message: SUGGEST A NEW BOOK
+        title: Title
+        author: Author
+        link: Link
+        price: Price
+        editorial: Editorial
+        publisher: Publisher
+        year: Year
+        submit: submit

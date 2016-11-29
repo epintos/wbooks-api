@@ -4,7 +4,6 @@ class BookSuggestionMailer < ApplicationMailer
   #
   #   en.book_suggestion_mailer.new_book_suggestion_notification.subject
   #
-
   def new_book_suggestion_notification(book_suggestion)
     @book_suggestion = book_suggestion
 
