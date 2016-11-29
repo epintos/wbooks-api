@@ -21,6 +21,7 @@ Rails.application.routes.draw do
     end
     resources :books, only: [:index, :show]
     resources :book_suggestions, only: [:create, :index, :show]
+    resources :book_suggestions, only: [:create, :index, :show], path: 'public/book_suggestions', controller: 'public_book_suggestions'
   end
 
   resources :book_suggestions, only: [:create, :new]

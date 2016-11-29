@@ -1,21 +1,14 @@
 module Api
   module V1
-    class BookSuggestionsController < ApplicationController
+    class PublicBookSuggestionsController < ApplicationController
+      skip_before_action :current_user, :authenticate_request
 
       PERMITTED_PARAMS = [:title, :editorial, :price, :author, :link, :publisher, :year]
 
-      def index
-        render json: BookSuggestion.all.page(params[:page])
-      end
-
-      def show
-        render json: book_suggestion
-      end
-
       def create
-        suggestion = current_user.book_suggestions.build(book_suggestion_params)
+        suggestion = BookSuggestion.new(book_suggestion_params)
         if suggestion.save
-          head :created
+          render json: suggestion, status: :created
         else
           render json: { error: suggestion.errors }, status: :unprocessable_entity
         end
