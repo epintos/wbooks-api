@@ -5,6 +5,7 @@ class User < ApplicationRecord
   validates :locale, inclusion: %w(en es)
   has_many :rents, dependent: :destroy
   has_many :book_suggestions, dependent: :destroy
+  has_many :comments ,dependent: :destroy
 
   has_many :wishes, dependent: :destroy
 
