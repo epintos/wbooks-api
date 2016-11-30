@@ -2,5 +2,5 @@ class Comment < ApplicationRecord
   belongs_to :user
   belongs_to :book
 
-  validates :content, presence: true
+  validates :content, :user_id, :book_id, presence: true
 end
