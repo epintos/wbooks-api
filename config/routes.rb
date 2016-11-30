@@ -17,7 +17,12 @@ Rails.application.routes.draw do
         resources :rents, only: [:create, :destroy, :index, :show]
       end
     end
-    resources :books, only: [:index, :show, :create]
+
+    resources :books, only: [:index, :show, :create] do
+      member do
+        resources :comments, only: [:create, :index, :show, :update, :destroy]
+      end
+    end
     resources :book_suggestions, only: [:create, :index, :show]
   end
 
