@@ -5,7 +5,6 @@ class ApplicationController < ActionController::Base
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
   protect_from_forgery with: :null_session
   before_action :current_user, :authenticate_request, :set_locale
-  include Pundit
 
   private
 
