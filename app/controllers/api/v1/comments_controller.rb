@@ -36,7 +36,7 @@ module Api
       private
 
       def book
-        @book ||= Book.find(params[:id])
+        @book ||= comment.book
       end
 
       def comment_params
