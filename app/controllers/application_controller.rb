@@ -1,10 +1,11 @@
 class ApplicationController < ActionController::Base
+  include Pundit
   rescue_from ActionController::ParameterMissing, with: :render_nothing_bad_req
   rescue_from ActiveRecord::RecordNotFound, with: :render_nothing_bad_req
+  rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
   protect_from_forgery with: :null_session
   before_action :current_user, :authenticate_request, :set_locale
-  include Pundit
-  
+
   private
 
   def set_locale

@@ -8,14 +8,19 @@ class CommentPolicy < ApplicationPolicy
     end
 
     def resolve
-      if user.current_user?
+      if user.admin?
         scope.all
       else
         scope.where(published: true)
       end
     end
   end
+
   def update?
-    user.current_user? or not record.published?
+    record.user == user
+  end
+
+  def destroy?
+    record.user == user
   end
 end

@@ -44,7 +44,7 @@ module Api
       end
 
       def comment
-        @comment ||= Comment.find(params[:id])
+        @comment ||= current_user.comments.find(params[:id])
       end
     end
   end
