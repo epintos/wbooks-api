@@ -123,4 +123,32 @@ describe Api::V1::CommentsController, type: :controller do
       end
     end
   end
+
+  describe 'DELETE #destroy' do
+    context 'When deleting a comment' do
+      it 'delets a comment' do
+        expect do
+          delete :destroy, params: { book_id: book.id, id: comment.id }
+        end
+      end
+
+      it 'responds with 200 status' do
+        expect(response).to have_http_status(:ok)
+      end
+    end
+  end
+
+  describe 'PATCH #update' do
+    context 'When modifying a comment' do
+      let!(:modified_comment) { create(:comment) }
+      it 'modifies a comment' do
+        expect do
+          patch :comment, params: { book_id: book.id, id: comment.id, comment: modified_comment }
+        end
+      end
+      it 'responds with 200 status' do
+        expect(response).to have_http_status(:ok)
+      end
+    end
+  end
 end
