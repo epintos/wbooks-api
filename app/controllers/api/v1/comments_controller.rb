@@ -2,7 +2,7 @@ module Api
   module V1
     class CommentsController < ApplicationController
       def index
-        render json: Comment.all.page(params[:page])
+        render json: book.comments.page(params[:page])
       end
 
       def show
@@ -36,7 +36,7 @@ module Api
       private
 
       def book
-        @book ||= comment.book
+        @book ||= Book.find(params[:book_id])
       end
 
       def comment_params
@@ -44,7 +44,7 @@ module Api
       end
 
       def comment
-        @comment ||= current_user.comments.find(params[:id])
+        @comment ||= Comment.find(params[:id])
       end
     end
   end

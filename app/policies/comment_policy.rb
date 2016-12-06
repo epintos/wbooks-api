@@ -8,11 +8,7 @@ class CommentPolicy < ApplicationPolicy
     end
 
     def resolve
-      if user.admin?
-        scope.all
-      else
-        scope.where(published: true)
-      end
+      @scope.where(user: @user)
     end
   end
 
