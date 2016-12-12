@@ -1,6 +1,7 @@
-WbooksApi
+Wbooks API
 ===============
 
+[![CircleCI](https://circleci.com/gh/epintos/wbooks-api.svg?style=svg&circle-token=b0edc574f8951c25e3a0bc38765205b73a76a24e)](https://circleci.com/gh/epintos/wbooks-api)
 [![Error Tracking](https://d26gfdfi90p7cf.cloudfront.net/rollbar-badge.144534.o.png)](https://rollbar.com)
 
 API Docs [here](http://docs.wbooksapi.apiary.io/)

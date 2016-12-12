@@ -7,7 +7,7 @@ describe Api::V1::RentsController, type: :controller do
     context 'When fetching all the users rents' do
       let!(:rents) { create_list(:rent, 3, user: user) }
       before do
-        get :index, params: { id: user.id }
+        get :index, params: { user_id: user.id }
       end
 
       it 'responses with the users rents json' do
@@ -47,12 +47,12 @@ describe Api::V1::RentsController, type: :controller do
       let!(:new_rent_attributes) { attributes_with_foreign_keys(:rent, user: user) }
       it 'creates a new rent' do
         expect do
-          post :create, params: { id: user.id, rent: new_rent_attributes }
+          post :create, params: { user_id: user.id, rent: new_rent_attributes }
         end.to change { Rent.count }.by(1)
       end
 
       it 'responds with 201 status' do
-        post :create, params: { id: user.id, rent: new_rent_attributes }
+        post :create, params: { user_id: user.id, rent: new_rent_attributes }
         expect(response).to have_http_status(:created)
       end
     end
@@ -62,12 +62,12 @@ describe Api::V1::RentsController, type: :controller do
         attributes_with_foreign_keys(:rent, book: nil, user: user)
       end
       before do
-        post :create, params: { id: user.id, rent: new_rent_attributes }
+        post :create, params: { user_id: user.id, rent: new_rent_attributes }
       end
 
       it 'doesn\'t create a new rent' do
         expect do
-          post :create, params: { id: user.id, rent: new_rent_attributes }
+          post :create, params: { user_id: user.id, rent: new_rent_attributes }
         end.to change { Rent.count }.by(0)
       end
 

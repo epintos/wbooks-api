@@ -4,10 +4,10 @@ describe Api::V1::UsersController, type: :controller do
   include_context 'Authenticated User'
   let!(:user) { create(:user) }
 
-  describe 'GET #show' do
-    context 'When showing a user' do
+  describe 'GET #me' do
+    context 'When showing a logged user' do
       before do
-        get :show, params: { id: user.id }
+        get :me
       end
       it 'responses with the user comment json' do
         expect(response_body.to_json).to eq UserSerializer.new(

@@ -13,3 +13,7 @@ FactoryGirl.create_list(:book, 30)
     )
   end
 end
+
+Book.all.find_each do |book|
+  (1..10).each { |sub_index| FactoryGirl.create(:comment, book: book, user: User.all.sample) }
+end

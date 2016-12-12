@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   # API Endpoints
   api_version(module: 'api/v1', path: { value: 'api/v1' }, defaults: { format: :json }) do
-    resources :users, only: [:show, :update, :create] do
+    resources :users, only: [:update, :create] do
       collection do
         resources :sessions, only: [:create] do
           collection do
@@ -11,11 +11,10 @@ Rails.application.routes.draw do
             post :invalidate_all
           end
         end
+        get :me
       end
-      member do
-        resources :wishes, only: [:index, :show, :create]
-        resources :rents, only: [:create, :destroy, :index, :show]
-      end
+      resources :wishes, only: [:index, :show, :create]
+      resources :rents, only: [:create, :destroy, :index, :show]
     end
     resources :books, only: [:index, :show, :create] do
       resources :comments, only: [:create, :index, :show, :update, :destroy]
@@ -25,5 +24,4 @@ Rails.application.routes.draw do
 
   require 'sidekiq/web'
   mount Sidekiq::Web, at: 'sidekiq'
-  mount PgHero::Engine, at: 'pghero'
 end

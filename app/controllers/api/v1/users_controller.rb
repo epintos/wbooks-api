@@ -2,7 +2,7 @@ module Api
   module V1
     class UsersController < ApplicationController
       skip_before_action :current_user, :authenticate_request, except: [:show, :update]
-      def show
+      def me
         render json: current_user
       end
 
@@ -22,7 +22,7 @@ module Api
             access_token: token_data[:token], renew_id: token_data[:renew_id]
           }, status: :created
         else
-          render json: { error: user.errors }, status: :unprocessable_entity
+          render json: { error: user.errors.full_messages }, status: :unprocessable_entity
         end
       end
 

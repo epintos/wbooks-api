@@ -7,7 +7,7 @@ describe Api::V1::WishesController, type: :controller do
     let!(:wishes) { create_list(:wish, 3, user: user) }
     context 'When fetching all users wishes' do
       before do
-        get :index, params: { id: user.id }
+        get :index, params: { user_id: user.id }
       end
 
       it 'responses with alls users wishes json' do
@@ -48,7 +48,7 @@ describe Api::V1::WishesController, type: :controller do
       it 'creates a new wish' do
         expect do
           post :create, params: {
-            id: user.id,
+            user_id: user.id,
             wish: { book_id: new_wish.book.id, user_id: new_wish.user.id }
           }
         end.to change { Wish.count }.by(1)
@@ -56,7 +56,7 @@ describe Api::V1::WishesController, type: :controller do
 
       it 'responds with 201 status' do
         post :create, params: {
-          id: user.id,
+          user_id: user.id,
           wish: { book_id: new_wish.book.id, user_id: new_wish.user.id }
         }
         expect(response).to have_http_status(:created)
