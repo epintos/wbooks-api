@@ -83,6 +83,9 @@ gem 'versionist'
 
 gem 'jwt'
 
+# Setup Cors
+gem 'rack-cors'
+
 group :development do
   # Gem to detect N+1 queries
   gem 'bullet'
