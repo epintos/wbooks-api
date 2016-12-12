@@ -34,6 +34,7 @@ gem 'bootstrap-sass'
 gem 'mini_magick'
 
 gem 'carrierwave'
+gem 'fog'
 
 # Pagination
 gem 'kaminari'
