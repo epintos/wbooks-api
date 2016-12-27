@@ -383,6 +383,12 @@ GEM
     polyamorous (1.3.1)
       activerecord (>= 3.0)
     powerpack (0.1.1)
+    pry (0.10.4)
+      coderay (~> 1.1.0)
+      method_source (~> 0.8.1)
+      slop (~> 3.4)
+    pry-rails (0.3.4)
+      pry (>= 0.9.10)
     puma (3.6.0)
     pundit (1.1.0)
       activesupport (>= 3.0.0)
@@ -530,6 +536,7 @@ GEM
       actionpack (>= 3.1)
       railties (>= 3.1)
       slim (~> 3.0)
+    slop (3.6.0)
     spring (2.0.0)
       activesupport (>= 4.2)
     spring-watcher-listen (2.0.1)
@@ -627,6 +634,7 @@ DEPENDENCIES
   mini_magick
   newrelic_rpm
   pg (~> 0.18)
+  pry-rails
   puma (~> 3.0)
   pundit
   rack-cors
@@ -663,4 +671,4 @@ RUBY VERSION
    ruby 2.3.1p112
 
 BUNDLED WITH
-   1.13.6
+   1.13.7
