@@ -4,7 +4,8 @@ class Notification < ApplicationRecord
   after_destroy :update_counter_cache
   after_save :update_counter_cache
 
-  validates :type, :user_to, :type, presence: true
+  validates :type, :user_to_id, :action, presence: true
+  validates :read, inclusion: { in: [true, false] }
 
   belongs_to :user_from, class_name: User
   belongs_to :user_to, class_name: User
