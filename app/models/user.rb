@@ -9,7 +9,7 @@ class User < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :wishes, dependent: :destroy
   mount_uploader :image, ImageUploader
-  has_many :notifications, foreign_key: :user_to_id, counter_cache: true, dependent: :destroy
+  has_many :notifications, foreign_key: :user_to_id, dependent: :destroy
 
   # Hooks
   before_validation :generate_verification_code, on: :create
@@ -18,9 +18,9 @@ class User < ApplicationRecord
     self.verification_code = AuthenticableEntity.verification_code
   end
 
-  def update_unreaded_notifications_counter
+  def update_notifications_counter
     update(
-      unreaded_notifications_count: Notification.unreaded.where(user_to: self).count
+      unreaded_notifications_count: notifications.unreaded.count
     )
   end
 end

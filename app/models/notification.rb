@@ -1,10 +1,13 @@
 class Notification < ApplicationRecord
   Notification.inheritance_column = :type_sti
 
-  after_destroy :update_counter_cache
-  after_save :update_counter_cache
+  delegate :update_notifications_counter, to: :user_to, prefix: :user
 
-  validates :type, :user_to_id, :action, presence: true
+  after_create :user_update_notifications_counter
+  after_save :user_update_notifications_counter, if: :read_changed?
+  after_destroy :user_update_notifications_counter
+
+  validates :type, :user_to_id, :action_type, presence: true
   validates :read, inclusion: { in: [true, false] }
 
   belongs_to :user_from, class_name: User
@@ -18,10 +21,4 @@ class Notification < ApplicationRecord
     information: 0,
     book_rent: 1
   }
-
-  def update_counter_cache
-    user_to.update(
-      unreaded_notifications_count: Notification.unreaded.where(user_to: user_to).count
-    )
-  end
 end

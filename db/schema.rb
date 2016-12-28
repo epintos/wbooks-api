@@ -48,8 +48,8 @@ ActiveRecord::Schema.define(version: 20161230175343) do
 
   create_table "notifications", force: :cascade do |t|
     t.integer  "type"
-    t.integer  "action_id",                    null: false
     t.string   "action_type",                  null: false
+    t.integer  "action_id",                    null: false
     t.string   "information",  default: [],    null: false, array: true
     t.boolean  "read",         default: false
     t.datetime "created_at",                   null: false

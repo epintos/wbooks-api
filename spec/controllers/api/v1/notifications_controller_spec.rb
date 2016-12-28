@@ -39,15 +39,16 @@ describe Api::V1::NotificationsController, type: :controller do
         end.to change { user.reload.unreaded_notifications_count }.by(-1)
       end
 
-      it 'responds with 202 status' do
+      it 'responds with 200 status' do
         put :read, params: { user_id: user.id, id: notification.id }
-        expect(response).to have_http_status(:accepted)
+        expect(response).to have_http_status(:ok)
       end
     end
   end
 
   describe 'PUT #read_all' do
     let!(:notifications) { create_list(:notification, 5, user_to: user) }
+    let!(:notification) { create(:notification, user_to: user) }
     context 'When marking as read a notification' do
       it 'marks as readed every notification' do
         put :read_all, params: { user_id: user.id }
@@ -55,15 +56,14 @@ describe Api::V1::NotificationsController, type: :controller do
       end
 
       it 'updates unreaded_notifications_counter to user' do
-        notification = create(:notification, user_to: user, read: false)
         expect do
           put :read_all, params: { user_id: notification.user_to.id }
         end.to change { user.reload.unreaded_notifications_count }.to(0)
       end
 
-      it 'responds with 202 status' do
-        put :read, params: { user_id: user.id, id: notification.id }
-        expect(response).to have_http_status(:accepted)
+      it 'responds with 204 status' do
+        put :read_all, params: { user_id: user.id, id: notification.id }
+        expect(response).to have_http_status(:no_content)
       end
     end
   end
