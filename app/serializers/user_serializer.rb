@@ -1,3 +1,3 @@
-class UserSerializer < ActiveModel::Serializer
-  attributes :id, :first_name, :last_name, :email, :rents_counter, :comments_counter, :image_url, :unread_notifications_count
+class UserSerializer < SimpleUserSerializer
+  attributes :rents_counter, :comments_counter, :unread_notifications_count
 end

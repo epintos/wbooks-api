@@ -3,8 +3,6 @@ class CreateNotifications < ActiveRecord::Migration[5.0]
     create_table :notifications do |t|
       t.integer :reason, null: false
       t.belongs_to :action, polymorphic: true, index: true
-      t.integer :action_id
-      t.string  :action_type, null: false
       t.string :information, array: true, default: '{}'
       t.boolean :read, default: false
 

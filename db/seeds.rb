@@ -1,9 +1,9 @@
 User.all.find_each do |user|
   15.times do
-    FactoryGirl.create(:notification, user_to: user)
+    FactoryGirl.create(:notification, to: user, from: user)
   end
   15.times do
-    FactoryGirl.create(:notification, user_to: user, read: true)
+    FactoryGirl.create(:notification, to: user, from: user, read: true)
   end
 end
 

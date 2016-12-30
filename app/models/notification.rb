@@ -6,7 +6,7 @@ class Notification < ApplicationRecord
   after_update :user_reset_unread_notifications, if: :read_changed?
   after_destroy :user_decrement_unread_notifications
 
-  validates :reason, :to_id, :action_type, presence: true
+  validates :reason, :to_id, :action_id, :action_type, presence: true
   validates :read, inclusion: { in: [true, false] }
 
   belongs_to :from, class_name: User

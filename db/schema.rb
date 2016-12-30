@@ -48,7 +48,7 @@ ActiveRecord::Schema.define(version: 20161230175343) do
 
   create_table "notifications", force: :cascade do |t|
     t.integer  "reason",                      null: false
-    t.string   "action_type",                 null: false
+    t.string   "action_type"
     t.integer  "action_id"
     t.string   "information", default: [],                 array: true
     t.boolean  "read",        default: false

@@ -6,6 +6,7 @@ RSpec.describe Notification, type: :model do
   it { should validate_presence_of(:reason) }
   it { should validate_presence_of(:to_id) }
   it { should validate_presence_of(:action_type) }
+  it { should validate_presence_of(:action_id) }
 
   subject(:notification) do
     Notification.new(
