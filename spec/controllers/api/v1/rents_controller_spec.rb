@@ -51,6 +51,12 @@ describe Api::V1::RentsController, type: :controller do
         end.to change { Rent.count }.by(1)
       end
 
+      it 'increments the rents historic counter' do
+        expect do
+          post :create, params: { user_id: user.id, rent: new_rent_attributes }
+        end.to change { user.reload.rents_counter }.by(1)
+      end
+
       it 'responds with 201 status' do
         post :create, params: { user_id: user.id, rent: new_rent_attributes }
         expect(response).to have_http_status(:created)

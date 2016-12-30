@@ -10,10 +10,13 @@ module Api
         render json: rent
       end
 
+      # TODO: Refactor and remove rubocop exception
+      # rubocop:disable Metrics/AbcSize
       def create
         @rent = Rent.new(rent_params)
         authorize rent
-        if rent.save
+        rent.user.increment(:rents_counter)
+        if rent.save && rent.user.save
           head :created
         else
           render json: { error: rent.errors }, status: :unprocessable_entity

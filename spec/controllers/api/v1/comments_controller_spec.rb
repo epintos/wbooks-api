@@ -51,6 +51,12 @@ describe Api::V1::CommentsController, type: :controller do
         end.to change { book.comments.count }.by(1)
       end
 
+      it 'increments the comments historic counter' do
+        expect do
+          post :create, params: { book_id: book.id, comment: new_comment_attributes }
+        end.to change { user.reload.comments_counter }.by(1)
+      end
+
       it 'responds with 201 status' do
         post :create, params: { book_id: book.id, comment: new_comment_attributes }
         expect(response).to have_http_status(:created)

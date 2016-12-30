@@ -9,9 +9,12 @@ module Api
         render json: comment
       end
 
+      # TODO: Refactor and remove rubocop exception
+      # rubocop:disable Metrics/AbcSize
       def create
         @comment = current_user.comments.build(comment_params)
-        if comment.save
+        comment.user.increment(:comments_counter)
+        if comment.save && comment.user.save
           head :created
         else
           render json: { error: comment.errors }, status: :unprocessable_entity
