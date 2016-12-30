@@ -8,7 +8,7 @@ class User < ApplicationRecord
   has_many :comments, dependent: :destroy
 
   has_many :wishes, dependent: :destroy
-
+  mount_uploader :image, ImageUploader
   # Hooks
   before_validation :generate_verification_code, on: :create
 
