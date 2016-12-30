@@ -1,24 +1,32 @@
 class Notification < ApplicationRecord
-  Notification.inheritance_column = :type_sti
+  delegate :increment_unread_notifications, to: :to, prefix: :user
+  delegate :decrement_unread_notifications, to: :to, prefix: :user
 
-  delegate :update_notifications_counter, to: :user_to, prefix: :user
+  after_create :user_increment_unread_notifications
+  after_update :user_reset_unread_notifications, if: :read_changed?
+  after_destroy :user_decrement_unread_notifications
 
-  after_create :user_update_notifications_counter
-  after_save :user_update_notifications_counter, if: :read_changed?
-  after_destroy :user_update_notifications_counter
-
-  validates :type, :user_to_id, :action_type, presence: true
+  validates :reason, :to_id, :action_type, presence: true
   validates :read, inclusion: { in: [true, false] }
 
-  belongs_to :user_from, class_name: User
-  belongs_to :user_to, class_name: User
+  belongs_to :from, class_name: User
+  belongs_to :to, class_name: User
   belongs_to :action, polymorphic: true
 
-  scope :readed, -> { where(read: true) }
-  scope :unreaded, -> { where(read: false) }
+  scope :read, -> { where(read: true) }
+  scope :unread, -> { where(read: false) }
 
-  enum type: {
+  enum reason: {
     information: 0,
     book_rent: 1
   }
+
+  def user_reset_unread_notifications
+    # If read is currently true, then we need to decrement
+    if read
+      user_decrement_unread_notifications
+    else
+      user_increment_unread_notifications
+    end
+  end
 end

@@ -30,10 +30,12 @@ describe User, type: :model do
   end
 
   describe '#update_notifications_counter' do
-    it 'updates the user unreaded_notifications_count' do
-      user.update_notifications_counter
-      expect(user.unreaded_notifications_count)
-        .to be(Notification.unreaded.where(user_to: user).count)
+    context 'When has unread notifications' do
+      it 'updates the user unreaded_notifications_count' do
+        user.reset_unread_notifications
+        expect(user.unread_notifications_count)
+          .to be(Notification.unread.where(to: user).count)
+      end
     end
   end
 

@@ -1,9 +1,9 @@
 FactoryGirl.define do
   factory :notification do
-    type { (0...2).to_a.sample }
+    reason { Notification.reasons.keys.sample }
     read false
-    information Faker::Lorem.words(4)
-    user_to factory: :user
+    information { Faker::Lorem.words(4) }
+    to factory: :user
     action factory: :book
   end
 end

@@ -111,6 +111,7 @@ group :development, :test do
   # Lints
   gem 'rubocop'
   gem 'scss_lint', require: false
+  gem 'pry-rails'
 
   # Static analysis for security vulnerabilities
   gem 'brakeman', require: false

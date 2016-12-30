@@ -19,7 +19,7 @@ Rails.application.routes.draw do
       resources :comments, only: [:index], controller: :user_comments
       resources :notifications, only: [:index] do
         collection do
-          put :read_all
+          post :read_all
         end
         member do
           put :read
