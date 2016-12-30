@@ -36,4 +36,27 @@ describe Api::V1::BooksController, type: :controller do
       end
     end
   end
+
+  describe 'GET #suggestions' do
+    context 'When fetching suggested books for a certain book' do
+      let(:genre) { 'Faker::Book.genre' }
+      let(:book) { create(:book, genre: genre) }
+      let(:another_genre_book) { create(:book, genre: genre + 'another') }
+      let!(:same_genre_books) { create_list(:book, 5, genre: genre) }
+      before do
+        get :suggestions, params: { id: book.id }
+      end
+
+      it 'responses with the book suggestions' do
+        expected = ActiveModel::Serializer::CollectionSerializer.new(
+          same_genre_books, each_serializer: BookSerializer
+        ).to_json
+        expect(response_body.to_json) =~ JSON.parse(expected)
+      end
+
+      it 'responds with 200 status' do
+        expect(response).to have_http_status(:ok)
+      end
+    end
+  end
 end

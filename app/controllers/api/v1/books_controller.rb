@@ -18,6 +18,10 @@ module Api
         render json: book
       end
 
+      def suggestions
+        render json: Book.where(genre: book.genre).where.not(id: book.id)
+      end
+
       private
 
       def book_params
