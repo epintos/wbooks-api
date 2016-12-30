@@ -1,10 +1,6 @@
 module Api
   module V1
     class RentsController < ApplicationController
-      def index
-        render json: policy_scope(Rent).page(params[:page])
-      end
-
       def show
         authorize rent
         render json: rent

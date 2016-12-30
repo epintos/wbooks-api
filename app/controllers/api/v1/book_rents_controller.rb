@@ -2,7 +2,7 @@ module Api
   module V1
     class BookRentsController < ApplicationController
       def index
-        render json: current_user.rents.where(book: book).page(params[:page])
+        render json: book.rents.includes(:user).page(params[:page])
       end
 
       private
