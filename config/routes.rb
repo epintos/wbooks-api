@@ -18,6 +18,7 @@ Rails.application.routes.draw do
     end
     resources :books, only: [:index, :show, :create] do
       resources :comments, only: [:create, :index, :show, :update, :destroy]
+      resources :rents, only: [:index], controller: :book_rents
     end
     resources :book_suggestions, only: [:create, :index, :show]
   end
