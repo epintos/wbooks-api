@@ -46,6 +46,21 @@ ActiveRecord::Schema.define(version: 20161230175343) do
     t.index ["user_id"], name: "index_comments_on_user_id", using: :btree
   end
 
+  create_table "notifications", force: :cascade do |t|
+    t.integer  "reason",                      null: false
+    t.string   "action_type"
+    t.integer  "action_id"
+    t.string   "information", default: [],                 array: true
+    t.boolean  "read",        default: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.integer  "from_id"
+    t.integer  "to_id"
+    t.index ["action_type", "action_id"], name: "index_notifications_on_action_type_and_action_id", using: :btree
+    t.index ["from_id"], name: "index_notifications_on_from_id", using: :btree
+    t.index ["to_id"], name: "index_notifications_on_to_id", using: :btree
+  end
+
   create_table "rents", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "book_id"
@@ -58,24 +73,25 @@ ActiveRecord::Schema.define(version: 20161230175343) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "first_name",                          null: false
-    t.string   "last_name",                           null: false
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
-    t.string   "verification_code",                   null: false
+    t.string   "first_name",                              null: false
+    t.string   "last_name",                               null: false
+    t.string   "email",                      default: "", null: false
+    t.string   "encrypted_password",         default: "", null: false
+    t.string   "verification_code",                       null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
+    t.integer  "sign_in_count",              default: 0,  null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.inet     "current_sign_in_ip"
     t.inet     "last_sign_in_ip"
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
+    t.datetime "created_at",                              null: false
+    t.datetime "updated_at",                              null: false
     t.string   "locale"
-    t.integer  "rents_counter",          default: 0,  null: false
-    t.integer  "comments_counter",       default: 0,  null: false
+    t.integer  "unread_notifications_count", default: 0,  null: false
+    t.integer  "rents_counter",              default: 0,  null: false
+    t.integer  "comments_counter",           default: 0,  null: false
     t.string   "image"
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
@@ -93,6 +109,8 @@ ActiveRecord::Schema.define(version: 20161230175343) do
   add_foreign_key "book_suggestions", "users"
   add_foreign_key "comments", "books"
   add_foreign_key "comments", "users"
+  add_foreign_key "notifications", "users", column: "from_id"
+  add_foreign_key "notifications", "users", column: "to_id"
   add_foreign_key "rents", "books"
   add_foreign_key "rents", "users"
   add_foreign_key "wishes", "books"

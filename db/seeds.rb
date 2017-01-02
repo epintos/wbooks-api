@@ -1,3 +1,12 @@
+User.all.find_each do |user|
+  15.times do
+    FactoryGirl.create(:notification, to: user, from: user)
+  end
+  15.times do
+    FactoryGirl.create(:notification, to: user, from: user, read: true)
+  end
+end
+
 FactoryGirl.create_list(:book, 30)
 (1..3).each do |index|
   user = FactoryGirl.create(

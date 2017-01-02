@@ -17,6 +17,14 @@ Rails.application.routes.draw do
       resources :rents, only: [:create, :destroy, :show]
       resources :rents, only: [:index], controller: :user_rents
       resources :comments, only: [:index], controller: :user_comments
+      resources :notifications, only: [:index] do
+        collection do
+          post :read_all
+        end
+        member do
+          put :read
+        end
+      end
     end
     resources :books, only: [:index, :show, :create] do
       resources :comments, only: [:create, :index, :show, :update, :destroy]

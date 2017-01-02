@@ -29,6 +29,16 @@ describe User, type: :model do
     end
   end
 
+  describe '#update_notifications_counter' do
+    context 'When has unread notifications' do
+      it 'updates the user unreaded_notifications_count' do
+        user.reset_unread_notifications
+        expect(user.unread_notifications_count)
+          .to be(Notification.unread.where(to: user).count)
+      end
+    end
+  end
+
   describe '#create' do
     context 'When the first_name is nil' do
       let(:first_name) { nil }
