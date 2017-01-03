@@ -14,6 +14,7 @@ describe Api::V1::BooksController, type: :controller do
           books, each_serializer: BookSerializer
         ).to_json
         expect(response_body.to_json) =~ JSON.parse(expected)
+        expect(response_body.count).to eq books.count
       end
 
       it 'responds with 200 status' do
@@ -30,7 +31,7 @@ describe Api::V1::BooksController, type: :controller do
       end
 
       it 'responses with the book json' do
-        expect(response_body.to_json).to eq BookSerializer.new(
+        expect(response_body.to_json).to eq BookWithRentSerializer.new(
           book, root: false
         ).to_json
       end
@@ -52,6 +53,7 @@ describe Api::V1::BooksController, type: :controller do
           same_genre_books, each_serializer: BookSerializer
         ).to_json
         expect(response_body.to_json) =~ JSON.parse(expected)
+        expect(response_body.count).to eq same_genre_books.count
       end
 
       it 'responds with 200 status' do

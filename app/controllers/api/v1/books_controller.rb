@@ -15,7 +15,7 @@ module Api
       end
 
       def show
-        render json: book
+        render json: book, serializer: BookWithRentSerializer
       end
 
       def suggestions
