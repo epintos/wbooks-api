@@ -2,7 +2,7 @@ module Api
   module V1
     class BooksController < ApplicationController
       def index
-        render json: Book.all.page(params[:page])
+        render json: Book.all.page(params[:page]).per(params[:amount])
       end
 
       def create

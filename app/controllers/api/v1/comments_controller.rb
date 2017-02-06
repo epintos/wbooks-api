@@ -2,7 +2,7 @@ module Api
   module V1
     class CommentsController < ApplicationController
       def index
-        render json: book.comments.includes(:user).page(params[:page])
+        render json: book.comments.includes(:user).page(params[:page]).per(params[:amount])
       end
 
       def show
