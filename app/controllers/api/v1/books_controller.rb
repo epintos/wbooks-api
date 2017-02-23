@@ -2,7 +2,13 @@ module Api
   module V1
     class BooksController < ApplicationController
       def index
-        render json: Book.all.page(params[:page]).per(params[:amount])
+        render json: BooksSearchQuery.new.query(
+          genre: book_search_params[:genre],
+          author: book_search_params[:author],
+          title: book_search_params[:title]
+        ).page(
+          params[:page]
+        ).per(params[:amount])
       end
 
       def create
@@ -28,6 +34,10 @@ module Api
         params.require(:book).permit(
           :editorial, :price, :author, :title, :link, :publisher, :year, :genre
         )
+      end
+
+      def book_search_params
+        params.permit(:genre, :title, :author)
       end
 
       def book
