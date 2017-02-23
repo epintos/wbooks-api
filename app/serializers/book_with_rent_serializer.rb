@@ -5,6 +5,6 @@ class BookWithRentSerializer < ActiveModel::Serializer
     last_rent = object.rents.last
     return unless last_rent.present?
     return unless last_rent.in_progress
-    RentSerializer.new(last_rent).as_json
+    RentSimpleSerializer.new(last_rent).as_json
   end
 end
