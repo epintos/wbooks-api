@@ -10,6 +10,7 @@ class User < ApplicationRecord
   has_many :wishes, dependent: :destroy
   mount_uploader :image, ImageUploader
   has_many :notifications, foreign_key: :to_id, dependent: :destroy
+  has_many :identities, dependent: :destroy
 
   # Hooks
   before_validation :generate_verification_code, on: :create
@@ -28,5 +29,22 @@ class User < ApplicationRecord
 
   def reset_unread_notifications
     update(unread_notifications_count: 0)
+  end
+
+  class << self
+    def from_identity(identity_params, user_params: {})
+      identity = Identity.includes(:user).find_by(identity_params)
+
+      unless identity
+        user = User.create_with(user_params)
+                   .find_or_create_by(email: user_params[:email])
+
+        identity = Identity.create(
+          identity_params.merge(user: user)
+        )
+      end
+
+      identity.user
+    end
   end
 end
