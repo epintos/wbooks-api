@@ -5,5 +5,6 @@ FactoryGirl.define do
     publisher { Faker::Book.publisher }
     genre { Faker::Book.genre }
     year { Faker::Date.between(100.years.ago, Date.current).year }
+    description { Faker::Lorem.paragraph }
   end
 end

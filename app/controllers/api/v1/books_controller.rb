@@ -32,7 +32,7 @@ module Api
 
       def book_params
         params.require(:book).permit(
-          :editorial, :price, :author, :title, :link, :publisher, :year, :genre
+          :editorial, :price, :author, :title, :link, :publisher, :year, :genre, :description
         )
       end
 
