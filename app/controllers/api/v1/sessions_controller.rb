@@ -5,10 +5,7 @@ module Api
 
       def create
         if authenticated_user?
-          token_data = AuthenticableEntity.generate_access_token(user)
-          render json: {
-            access_token: token_data[:token], renew_id: token_data[:renew_id]
-          }, status: :ok
+          grant_access
         else
           render_error('Invalid email or password', :unauthorized)
         end
@@ -39,6 +36,22 @@ module Api
         end
       end
 
+      def create_from_google
+        token_validator = GoogleTokenValidator.new(params[:id_token])
+
+        # Sync call to Google...
+        return render_error('Invalid Google token', :unauthorized) unless token_validator.valid?
+
+        identity_params = { provider: 'google', uid: token_validator.token_info['sub'] }
+        @user = User.from_identity(identity_params, user_params: user_params_from_token(token_validator.token_info))
+
+        if user.persisted?
+          grant_access
+        else
+          render json: { errors: user.errors }, status: :unauthorized
+        end
+      end
+
       private
 
       def render_error(error_message, status)
@@ -63,6 +76,24 @@ module Api
 
       def authentication_manager
         @authentication_manager ||= AuthenticationManager.new(request.headers)
+      end
+
+      def user_params_from_token(token_info)
+        # Not sure if this belongs to here...
+        {
+          first_name: token_info['given_name'],
+          last_name: token_info['family_name'],
+          email: token_info['email'],
+          password: Devise.friendly_token.first(10),
+          locale: :en
+        }
+      end
+
+      def grant_access
+        token_data = AuthenticableEntity.generate_access_token(user)
+        render json: {
+          access_token: token_data[:token], renew_id: token_data[:renew_id]
+        }, status: :ok
       end
     end
   end

@@ -1,0 +1,10 @@
+- meta 'google-signin-client_id' => Rails.application.secrets.google_client_id
+- content_for :scripts do
+  = javascript_include_tag 'https://apis.google.com/js/platform.js', async: true, defer: true
+
+.google-login-container
+  .g-signin2 data-onsuccess='onGoogleSignIn'
+  div
+    | Token de auth:
+    span#login-token
+      | -

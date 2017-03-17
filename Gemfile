@@ -86,6 +86,8 @@ gem 'jwt'
 # Setup Cors
 gem 'rack-cors'
 
+gem 'httparty', '~> 0.14.0'
+
 group :development do
   # Gem to detect N+1 queries
   gem 'bullet'

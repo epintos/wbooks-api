@@ -9,6 +9,7 @@ Rails.application.routes.draw do
           collection do
             post :renew
             post :invalidate_all
+            post :create_from_google
           end
         end
         get :me
@@ -38,4 +39,6 @@ Rails.application.routes.draw do
 
   require 'sidekiq/web'
   mount Sidekiq::Web, at: 'sidekiq'
+
+  get 'users/google_login'
 end
