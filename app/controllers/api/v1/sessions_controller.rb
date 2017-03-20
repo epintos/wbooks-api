@@ -17,14 +17,13 @@ module Api
       # TODO: Refactor and remove rubocop exception
       # rubocop:disable Metrics/AbcSize
       def renew
-        if !authentication_manager.warning_expiration_date_reached?
-          render_error('Warning expiration date has not been reached', :forbidden)
-        elsif !authentication_manager.valid_renew_id?(renew_token_params[:renew_id])
+        if !authentication_manager.valid_renew_id?(renew_token_params[:renew_id])
           render_error('Invalid renew_id', :unauthorized)
         elsif !authentication_manager.able_to_renew?
           render_error('Access token is not valid anymore', :unauthorized)
         else
-          access_token = authentication_manager.renew_access_token(current_user)
+          decoded_auth_token = authentication_manager.decoded_auth_token
+          access_token = authentication_manager.renew_access_token(decoded_auth_token)
           render json: { access_token: access_token }, status: :ok
         end
       end

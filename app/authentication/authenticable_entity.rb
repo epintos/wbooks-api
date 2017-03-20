@@ -2,12 +2,12 @@ class AuthenticableEntity
   MAXIMUM_USEFUL_DATES     = 30.days
   EXPIRATION_DATES         = 2.days
   WARNING_EXPIRATION_DATES = 5.hours
-  RENEW_ID_CHARACTERS      = 32
+  RENEW_ID_CHARACTERS      = 64
   VERIFICATION_CODE_CHARACTERS = 64
 
   class << self
     def generate_access_token(entity)
-      renew_id = Devise.friendly_token(RENEW_ID_CHARACTERS)
+      renew_id = AuthenticationUniqueToken.generate_friendly(RENEW_ID_CHARACTERS)
       payload = { "#{entity.class.name.underscore}_id" => entity.id }
       payload = add_secure_attrs(payload, renew_id, entity)
       { token: AuthenticationTokenManager.encode(payload), renew_id: renew_id }
@@ -22,7 +22,7 @@ class AuthenticableEntity
     end
 
     def verification_code
-      Devise.friendly_token(VERIFICATION_CODE_CHARACTERS)
+      AuthenticationUniqueToken.generate_friendly(VERIFICATION_CODE_CHARACTERS)
     end
 
     private
