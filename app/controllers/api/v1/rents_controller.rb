@@ -13,14 +13,14 @@ module Api
         authorize rent
         rent.user.increment(:rents_counter)
         if rent.save && rent.user.save
-          head :created
+          render json: rent, status: :created
         else
           render json: { error: rent.errors }, status: :unprocessable_entity
         end
       end
 
       def destroy
-        authorize rent
+        authorize rent, :destroy
         rent.destroy
         head :ok
       end

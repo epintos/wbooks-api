@@ -47,15 +47,6 @@ ActiveRecord::Schema.define(version: 20170317201749) do
     t.index ["user_id"], name: "index_comments_on_user_id", using: :btree
   end
 
-  create_table "identities", force: :cascade do |t|
-    t.string   "provider"
-    t.string   "uid"
-    t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_identities_on_user_id", using: :btree
-  end
-
   create_table "notifications", force: :cascade do |t|
     t.integer  "reason",                      null: false
     t.string   "action_type"
@@ -99,10 +90,10 @@ ActiveRecord::Schema.define(version: 20170317201749) do
     t.datetime "created_at",                              null: false
     t.datetime "updated_at",                              null: false
     t.string   "locale"
-    t.integer  "unread_notifications_count", default: 0,  null: false
     t.integer  "rents_counter",              default: 0,  null: false
     t.integer  "comments_counter",           default: 0,  null: false
     t.string   "image"
+    t.integer  "unread_notifications_count", default: 0,  null: false
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
@@ -119,7 +110,6 @@ ActiveRecord::Schema.define(version: 20170317201749) do
   add_foreign_key "book_suggestions", "users"
   add_foreign_key "comments", "books"
   add_foreign_key "comments", "users"
-  add_foreign_key "identities", "users"
   add_foreign_key "notifications", "users", column: "from_id"
   add_foreign_key "notifications", "users", column: "to_id"
   add_foreign_key "rents", "books"
