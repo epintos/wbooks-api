@@ -18,7 +18,8 @@ class Notification < ApplicationRecord
 
   enum reason: {
     information: 0,
-    book_rent: 1
+    book_rent: 1,
+    comment: 2
   }
 
   def user_reset_unread_notifications

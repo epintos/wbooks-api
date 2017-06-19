@@ -15,6 +15,10 @@ module Api
         @comment = current_user.comments.build(comment_params)
         comment.user.increment(:comments_counter)
         if comment.save && comment.user.save
+          users = comment.book.users
+          users.each do |user|
+            Notification.create(reason: 2 , action_type: 'new', action_type: 'comment', from: comment.user, to: user)
+          end
           head :created
         else
           render json: { error: comment.errors }, status: :unprocessable_entity
