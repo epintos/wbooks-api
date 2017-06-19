@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170317201749) do
+ActiveRecord::Schema.define(version: 20170619184322) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,9 +40,11 @@ ActiveRecord::Schema.define(version: 20170317201749) do
   end
 
   create_table "comments", force: :cascade do |t|
-    t.string  "content"
-    t.integer "user_id"
-    t.integer "book_id"
+    t.string   "content"
+    t.integer  "user_id"
+    t.integer  "book_id"
+    t.datetime "created_at", default: '2017-06-19 18:53:38', null: false
+    t.datetime "updated_at", default: '2017-06-19 18:53:38', null: false
     t.index ["book_id"], name: "index_comments_on_book_id", using: :btree
     t.index ["user_id"], name: "index_comments_on_user_id", using: :btree
   end
@@ -90,10 +92,10 @@ ActiveRecord::Schema.define(version: 20170317201749) do
     t.datetime "created_at",                              null: false
     t.datetime "updated_at",                              null: false
     t.string   "locale"
+    t.integer  "unread_notifications_count", default: 0,  null: false
     t.integer  "rents_counter",              default: 0,  null: false
     t.integer  "comments_counter",           default: 0,  null: false
     t.string   "image"
-    t.integer  "unread_notifications_count", default: 0,  null: false
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
