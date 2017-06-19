@@ -16,4 +16,10 @@ describe Comment, type: :model do
   let(:content) { Faker::Lorem.paragraph }
 
   it { is_expected.to be_valid }
+  describe '#create' do
+    let!(:comment) { create(:comment) }
+    it 'has created_at' do
+      expect(comment.created_at).to_not be_nil
+    end
+  end
 end
