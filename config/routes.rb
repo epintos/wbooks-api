@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   # API Endpoints
   api_version(module: 'api/v1', path: { value: 'api/v1' }, defaults: { format: :json }) do
-    resources :users, only: [:update, :create] do
+    resources :users, only: [:update, :create, :show] do
       collection do
         resources :sessions, only: [:create] do
           collection do
