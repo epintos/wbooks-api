@@ -26,6 +26,11 @@ module Api
         end
       end
 
+      def show
+        @user = User.find(params[:id])
+        render json: @user, serializer: UserProfileSerializer
+      end
+
       private
 
       def user_params

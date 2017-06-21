@@ -1,3 +1,3 @@
-class UserSerializer < SimpleUserSerializer
-  attributes :rents_counter, :comments_counter, :unread_notifications_count
+class UserSerializer < UserProfileSerializer
+  attributes :unread_notifications_count
 end
