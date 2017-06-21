@@ -17,7 +17,7 @@ module Api
         if comment.save && comment.user.save
           users = comment.book.users
           users.each do |user|
-            Notification.create(reason: 2 , action_type: 'new', action_type: 'comment', from: comment.user, to: user)
+            Notification.create(reason: 2 , action_type: 'new', action_id: comment.id, from: comment.user, to: user)
           end
           head :created
         else
