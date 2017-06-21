@@ -59,10 +59,9 @@ describe Api::V1::CommentsController, type: :controller do
         end.to change { user.reload.comments_counter }.by(1)
       end
 
-
       it 'creates notifications for every user that wishes the comments book' do
         expect do
-          post :create, params: { book_id: book.id, comment: new_comment_attributes}
+          post :create, params: { book_id: book.id, comment: new_comment_attributes }
         end.to change { Notification.count }.by(wishes.count)
       end
 
