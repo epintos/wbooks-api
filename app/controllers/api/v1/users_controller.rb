@@ -1,7 +1,7 @@
 module Api
   module V1
     class UsersController < ApplicationController
-      skip_before_action :current_user, :authenticate_request, except: [:show, :update]
+      skip_before_action :current_user, :authenticate_request, only: [:create]
       def me
         render json: current_user
       end
