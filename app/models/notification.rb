@@ -17,8 +17,8 @@ class Notification < ApplicationRecord
   scope :unread, -> { where(read: false) }
 
   enum reason: {
-    new: 0,
-    update: 1
+    created: 0,
+    updated: 1
   }
 
   def user_reset_unread_notifications
