@@ -58,6 +58,7 @@ gem 'slim-rails'
 
 # Sidekiq
 gem 'sidekiq'
+gem 'sidekiq-scheduler'
 gem 'sinatra', require: nil
 gem 'sidekiq-failures'
 gem 'sidekiq_mailer'
@@ -85,6 +86,7 @@ gem 'jwt'
 
 # Setup Cors
 gem 'rack-cors'
+
 
 group :development do
   # Gem to detect N+1 queries

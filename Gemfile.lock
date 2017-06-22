@@ -157,6 +157,8 @@ GEM
       railties (>= 4.0, < 5.1)
     equalizer (0.0.11)
     erubis (2.7.0)
+    et-orbi (1.0.4)
+      tzinfo
     excon (0.53.0)
     execjs (2.7.0)
     factory_girl (4.7.0)
@@ -493,6 +495,8 @@ GEM
       reek (= 3.11)
       ruby_parser (~> 3.8)
       virtus (~> 1.0)
+    rufus-scheduler (3.4.2)
+      et-orbi (~> 1.0)
     s3_uploader (0.2.3)
       fog-aws (>= 0.9.4)
       mime-types
@@ -517,6 +521,11 @@ GEM
       redis (~> 3.2, >= 3.2.1)
     sidekiq-failures (0.4.5)
       sidekiq (>= 2.16.0)
+    sidekiq-scheduler (2.1.5)
+      redis (~> 3)
+      rufus-scheduler (~> 3.2)
+      sidekiq (>= 3)
+      tilt (>= 1.4.0)
     sidekiq_mailer (0.0.8)
       actionmailer (>= 3.0)
       activesupport (>= 3.0)
@@ -652,6 +661,7 @@ DEPENDENCIES
   shoulda-matchers
   sidekiq
   sidekiq-failures
+  sidekiq-scheduler
   sidekiq_mailer
   simplecov
   sinatra
@@ -670,4 +680,4 @@ RUBY VERSION
    ruby 2.3.1p112
 
 BUNDLED WITH
-   1.13.7
+   1.15.1
