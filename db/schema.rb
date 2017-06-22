@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170619193828) do
+ActiveRecord::Schema.define(version: 20170622183919) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -53,12 +53,12 @@ ActiveRecord::Schema.define(version: 20170619193828) do
     t.integer  "reason",                      null: false
     t.string   "action_type"
     t.integer  "action_id"
-    t.string   "information", default: [],                 array: true
     t.boolean  "read",        default: false
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
     t.integer  "from_id"
     t.integer  "to_id"
+    t.string   "body"
     t.index ["action_type", "action_id"], name: "index_notifications_on_action_type_and_action_id", using: :btree
     t.index ["from_id"], name: "index_notifications_on_from_id", using: :btree
     t.index ["to_id"], name: "index_notifications_on_to_id", using: :btree
