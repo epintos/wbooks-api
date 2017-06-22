@@ -1,7 +1,7 @@
 class NotifyWhenRentOverWorker
   include Sidekiq::Worker
 
-  def perform(*args)
+  def perform
     rents = Rent.where(to: Time.zone.today)
     rents.each do |rent|
       create_notifications(rent)
@@ -14,5 +14,4 @@ class NotifyWhenRentOverWorker
                           action_id: rent.id, from: rent.user, to: user)
     end
   end
-  
 end

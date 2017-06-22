@@ -7,7 +7,7 @@ describe NotifyWhenRentOverWorker, type: :worker do
 
   it 'creates notifications for users that wished the book' do
     expect do
-      Timecop.travel(Time.local(2017,6,21)) do
+      Timecop.travel(Time.zone.local(2017, 6, 21)) do
         NotifyWhenRentOverWorker.new.perform
       end
     end.to change { Notification.count }.by(wishes.count)
