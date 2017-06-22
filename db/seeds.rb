@@ -7,6 +7,10 @@ User.all.find_each do |user|
   end
 end
 
+User.create(email: 'testmail@wolox.com.ar', password: '123123123',
+            password_confirmation: '123123123', first_name: 'Test',
+            last_name: 'TestLastName', locale: 'es')
+
 FactoryGirl.create_list(:book, 30)
 (1..3).each do |index|
   user = FactoryGirl.create(

@@ -58,6 +58,7 @@ gem 'slim-rails'
 
 # Sidekiq
 gem 'sidekiq'
+gem 'sidekiq-scheduler'
 gem 'sinatra', require: nil
 gem 'sidekiq-failures'
 gem 'sidekiq_mailer'
@@ -85,6 +86,7 @@ gem 'jwt'
 
 # Setup Cors
 gem 'rack-cors'
+
 
 group :development do
   # Gem to detect N+1 queries
@@ -115,6 +117,8 @@ group :development, :test do
 
   # Static analysis for security vulnerabilities
   gem 'brakeman', require: false
+
+
 end
 
 group :test do
@@ -127,13 +131,14 @@ group :test do
   gem 'formulaic'
   gem 'launchy'
 
-  gem 'timecop'
+
   gem 'webmock'
 
   # CodeStats
   gem 'simplecov', require: false
   gem 'codestats-metrics-reporter', require: nil
   gem 'rubycritic', require: false
+  gem 'timecop'
 end
 
 group :production do
