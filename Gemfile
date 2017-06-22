@@ -117,6 +117,8 @@ group :development, :test do
 
   # Static analysis for security vulnerabilities
   gem 'brakeman', require: false
+
+
 end
 
 group :test do
@@ -129,13 +131,14 @@ group :test do
   gem 'formulaic'
   gem 'launchy'
 
-  gem 'timecop'
+
   gem 'webmock'
 
   # CodeStats
   gem 'simplecov', require: false
   gem 'codestats-metrics-reporter', require: nil
   gem 'rubycritic', require: false
+  gem 'timecop'
 end
 
 group :production do
