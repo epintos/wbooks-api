@@ -23,7 +23,7 @@ module Api
       end
 
       def create_notifications(users)
-         users.find_each do |user|
+        users.find_each do |user|
           Notification.create(reason: :created, action_type: comment.class.name,
                               action_id: comment.id, from: comment.user, to: user)
         end
