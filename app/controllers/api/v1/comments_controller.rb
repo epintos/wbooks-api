@@ -25,7 +25,7 @@ module Api
 
       def create_notifications(users)
         users.each do |user|
-          Notification.create(reason: 2, action_type: 'new',
+          Notification.create(reason: :new, action_type: comment.class_name,
                               action_id: comment.id, from: comment.user, to: user)
         end
       end
