@@ -8,6 +8,7 @@ class User < ApplicationRecord
   has_many :book_suggestions, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :wishes, dependent: :destroy
+  has_many :books, through: :wishes
   mount_uploader :image, ImageUploader
   has_many :notifications, foreign_key: :to_id, dependent: :destroy
 

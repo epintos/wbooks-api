@@ -45,6 +45,7 @@ describe Api::V1::CommentsController, type: :controller do
   describe 'POST #create' do
     context 'When creating a comment' do
       let(:new_comment_attributes) { attributes_with_foreign_keys(:comment, user: user) }
+
       it 'creates new comment' do
         expect do
           post :create, params: { book_id: book.id, comment: new_comment_attributes }
@@ -60,6 +61,24 @@ describe Api::V1::CommentsController, type: :controller do
       it 'responds with 201 status' do
         post :create, params: { book_id: book.id, comment: new_comment_attributes }
         expect(response).to have_http_status(:created)
+      end
+
+      context 'When the commments book has 10 wishes' do
+        let(:wishes) { create_list(:wish, 10, book: book) }
+        it 'creates 10 notifications for users that wished the book' do
+          expect do
+            post :create, params: { book_id: book.id, comment: new_comment_attributes }
+          end.to change { Notification.count }.by(wishes.count)
+        end
+      end
+
+      context 'When the comments book has 3 wishes' do
+        before { create_list(:wish, 3, book: book) }
+        it 'creates 1 notification per user that wished the book' do
+          expect do
+            post :create, params: { book_id: book.id, comment: new_comment_attributes }
+          end.to change { book.reload.users.pluck(:unread_notifications_count) }.to([1, 1, 1])
+        end
       end
     end
 
