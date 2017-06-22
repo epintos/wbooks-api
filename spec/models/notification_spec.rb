@@ -12,7 +12,6 @@ RSpec.describe Notification, type: :model do
     Notification.new(
       reason: reason,
       read: read,
-      information: information,
       to: to,
       action: action
     )
@@ -20,7 +19,6 @@ RSpec.describe Notification, type: :model do
 
   let!(:reason) { Notification.reasons.keys.sample }
   let!(:read) { Faker::Boolean.boolean }
-  let!(:information) { Faker::Lorem.words(4) }
   let!(:to) { create(:user) }
   let!(:action) { create(:book) }
 
