@@ -14,7 +14,7 @@ Rails.application.routes.draw do
         get :me
       end
       resources :wishes, only: [:index, :show, :create]
-      resources :rents, only: [:create, :destroy, :show]
+      resources :rents, only: [:create, :destroy, :show, :update]
       resources :rents, only: [:index], controller: :user_rents
       resources :comments, only: [:index], controller: :user_comments
       resources :notifications, only: [:index] do

@@ -25,6 +25,12 @@ module Api
         head :ok
       end
 
+      def update
+        authorize rent, :update
+        rent.update(returned_at: Time.zone.today)
+        head :ok
+      end
+
       private
 
       def rent_params
