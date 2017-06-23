@@ -7,4 +7,7 @@
   notify_when_rent_over_worker:
     every: 24h
     class: NotifyWhenRentOverWorker
-    
+
+  notify_when_rent_almost_over_worker:
+    every: 24h
+    class: NotifyWhenRentAlmostOverWorker
