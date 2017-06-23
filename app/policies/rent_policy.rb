@@ -7,6 +7,10 @@ class RentPolicy < ApplicationPolicy
     record.user_id == user.id
   end
 
+  def update
+    record.user == user
+  end
+
   def destroy
     record.user == user
   end

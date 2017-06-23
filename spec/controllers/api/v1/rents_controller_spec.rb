@@ -22,6 +22,16 @@ describe Api::V1::RentsController, type: :controller do
     end
   end
 
+  describe 'PUT #update' do
+    context 'When updating a rent\'s return date'
+    let(:rent) { create(:rent, user: user) }
+    it 'updates the rent\'s return date' do
+      expect do
+        put :update, params: { user_id: user.id, id: rent.id }
+      end.to change { rent.reload.returned_at }.to(Time.zone.today)
+    end
+  end
+
   describe 'POST #create' do
     context 'When creating a valid user rent' do
       let!(:new_rent_attributes) { attributes_with_foreign_keys(:rent, user: user) }
