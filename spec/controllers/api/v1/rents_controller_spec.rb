@@ -28,7 +28,7 @@ describe Api::V1::RentsController, type: :controller do
     it 'updates the rent\'s return date' do
       expect do
         put :update, params: { user_id: user.id, id: rent.id }
-      end.to change { Rent.find(rent.id).returned_at }.to(Time.zone.today)
+      end.to change { rent.reload.returned_at }.to(Time.zone.today)
     end
   end
 
