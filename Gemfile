@@ -90,6 +90,8 @@ gem 'rack-cors'
 # Use Devise Token Auth for authentication
 gem 'devise_token_auth'
 
+gem 'bootsnap', require: false
+
 
 group :development do
   # Gem to detect N+1 queries
