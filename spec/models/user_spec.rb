@@ -14,7 +14,7 @@ describe User, type: :model do
   let(:first_name) { Faker::Name.first_name }
   let(:last_name) { Faker::Name.last_name }
   let(:email) { Faker::Internet.email }
-  let(:locale) { %w(en es).sample }
+  let(:locale) { %w[en es].sample }
   let(:password) { 'password' }
   let(:password_confirmation) { 'password' }
 

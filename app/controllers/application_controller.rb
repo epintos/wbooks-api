@@ -44,8 +44,10 @@ class ApplicationController < ActionController::Base
   # before action methods when it fails
   def format_authentication_data(data)
     return unless data.present?
+
     response.headers.merge!(data[:headers]) if data[:headers].present?
     return unless data[:body].present?
+
     render json: data[:body], status: status_for_response(data[:code])
     false
   end

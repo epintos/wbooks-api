@@ -2,7 +2,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   validates :first_name, :last_name, :rents_counter, :comments_counter, presence: true
-  validates :locale, inclusion: %w(en es)
+  validates :locale, inclusion: %w[en es]
 
   has_many :rents, dependent: :destroy
   has_many :book_suggestions, dependent: :destroy

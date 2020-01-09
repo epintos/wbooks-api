@@ -18,6 +18,7 @@ module Api
           render json: { error: rent.errors }, status: :unprocessable_entity
         end
       end
+      # rubocop:enable Metrics/AbcSize
 
       def destroy
         authorize rent, :destroy

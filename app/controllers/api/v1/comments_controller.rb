@@ -21,6 +21,7 @@ module Api
           render json: { error: comment.errors }, status: :unprocessable_entity
         end
       end
+      # rubocop:enable  Metrics/AbcSize
 
       def create_notifications(users)
         users.find_each do |user|
