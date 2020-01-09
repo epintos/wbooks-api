@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :notification do
     reason { Notification.reasons.keys.sample }
     read false

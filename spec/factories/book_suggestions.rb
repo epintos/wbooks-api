@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :book_suggestion do
     title { Faker::Book.title }
     author { Faker::Book.author }
