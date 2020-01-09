@@ -4,7 +4,7 @@ FactoryBot.define do
     title { Faker::Book.title }
     publisher { Faker::Book.publisher }
     genre { Faker::Book.genre }
-    year { Faker::Date.between(100.years.ago, Date.current).year }
+    year { Faker::Date.between(from: 100.years.ago, to: Date.current).year }
     description { Faker::Lorem.paragraph }
   end
 end

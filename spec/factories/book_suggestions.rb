@@ -6,6 +6,7 @@ FactoryBot.define do
     link { Faker::Internet.url }
     price { Faker::Commerce.price }
     editorial { Faker::Company.name }
-    year { Faker::Date.between(50.years.ago, 1.year.ago).year }
+    year { Faker::Date.between(from: 50.years.ago, to: 1.year.ago).year }
+    user factory: :user
   end
 end

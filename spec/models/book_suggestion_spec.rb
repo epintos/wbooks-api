@@ -18,7 +18,7 @@ describe BookSuggestion, type: :model do
   let(:link) { Faker::Internet.url }
   let(:price) { Faker::Commerce.price }
   let(:editorial) { Faker::Company.name }
-  let(:year) { Faker::Date.between(50.years.ago, 1.year.ago).year }
+  let(:year) { Faker::Date.between(from: 50.years.ago, to: 1.year.ago).year }
 
   it { is_expected.to be_valid }
 end

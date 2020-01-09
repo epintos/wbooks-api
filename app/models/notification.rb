@@ -9,8 +9,8 @@ class Notification < ApplicationRecord
   validates :reason, :to_id, :action_id, :action_type, presence: true
   validates :read, inclusion: { in: [true, false] }
 
-  belongs_to :from, class_name: User
-  belongs_to :to, class_name: User
+  belongs_to :from, class_name: User.name
+  belongs_to :to, class_name: User.name
   belongs_to :action, polymorphic: true
 
   scope :read, -> { where(read: true) }
