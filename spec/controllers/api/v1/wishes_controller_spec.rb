@@ -43,13 +43,14 @@ describe Api::V1::WishesController, type: :controller do
   end
 
   describe 'POST #create', type: :controller do
+    let(:book) { create(:book) }
     context 'When creating a user\'s wish' do
-      let(:new_wish) { build(:wish, user: user) }
+      let!(:new_wish_attributes) { attributes_with_foreign_keys(:wish, user: user, book: book) }
       it 'creates a new wish' do
         expect do
           post :create, params: {
             user_id: user.id,
-            wish: { book_id: new_wish.book.id, user_id: new_wish.user.id }
+            wish: new_wish_attributes
           }
         end.to change { Wish.count }.by(1)
       end
@@ -57,7 +58,7 @@ describe Api::V1::WishesController, type: :controller do
       it 'responds with 201 status' do
         post :create, params: {
           user_id: user.id,
-          wish: { book_id: new_wish.book.id, user_id: new_wish.user.id }
+          wish: new_wish_attributes
         }
         expect(response).to have_http_status(:created)
       end

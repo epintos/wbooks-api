@@ -3,7 +3,7 @@ class Notification < ApplicationRecord
   delegate :decrement_unread_notifications, to: :to, prefix: :user
 
   after_create :user_increment_unread_notifications
-  after_update :user_reset_unread_notifications, if: :read_changed?
+  after_update :user_reset_unread_notifications, if: :saved_change_to_read?
   after_destroy :user_decrement_unread_notifications
 
   validates :reason, :to_id, :action_id, :action_type, presence: true

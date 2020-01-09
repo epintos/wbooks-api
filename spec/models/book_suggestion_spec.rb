@@ -8,7 +8,7 @@ describe BookSuggestion, type: :model do
   subject(:book_suggestion) do
     BookSuggestion.new(
       title: title, author: author, link: link, editorial: editorial,
-      price: price, publisher: publisher, year: year
+      price: price, publisher: publisher, year: year, user: user
     )
   end
 
@@ -19,6 +19,7 @@ describe BookSuggestion, type: :model do
   let(:price) { Faker::Commerce.price }
   let(:editorial) { Faker::Company.name }
   let(:year) { Faker::Date.between(from: 50.years.ago, to: 1.year.ago).year }
+  let(:user) { create(:user) }
 
   it { is_expected.to be_valid }
 end

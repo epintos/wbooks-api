@@ -33,8 +33,9 @@ describe Api::V1::RentsController, type: :controller do
   end
 
   describe 'POST #create' do
+    let(:book) { create(:book) }
     context 'When creating a valid user rent' do
-      let!(:new_rent_attributes) { attributes_with_foreign_keys(:rent, user: user) }
+      let!(:new_rent_attributes) { attributes_with_foreign_keys(:rent, user: user, book: book) }
       it 'creates a new rent' do
         expect do
           post :create, params: { user_id: user.id, rent: new_rent_attributes }

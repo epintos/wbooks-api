@@ -13,6 +13,7 @@ RSpec.describe Notification, type: :model do
       reason: reason,
       read: read,
       to: to,
+      from: from,
       action: action
     )
   end
@@ -20,6 +21,7 @@ RSpec.describe Notification, type: :model do
   let!(:reason) { Notification.reasons.keys.sample }
   let!(:read) { Faker::Boolean.boolean }
   let!(:to) { create(:user) }
+  let!(:from) { create(:user) }
   let!(:action) { create(:book) }
 
   it { is_expected.to be_valid }
