@@ -1,5 +1,7 @@
 Wbooks API
-===============
+============
+
+This Repository includes the code for Wolox's API for training purposes. I also use this API to try new Rails features and gems.
 
 [![CircleCI](https://circleci.com/gh/epintos/wbooks-api.svg?style=svg&circle-token=b0edc574f8951c25e3a0bc38765205b73a76a24e)](https://circleci.com/gh/epintos/wbooks-api)
 [![Error Tracking](https://d26gfdfi90p7cf.cloudfront.net/rollbar-badge.144534.o.png)](https://rollbar.com)
@@ -32,7 +34,7 @@ You can skip the hook by adding `--no-verify` to your `git push`.
 - Install [Bundler](http://bundler.io/).
 
 ```bash
-  gem install bundler --no-ri --no-rdoc
+  gem install bundler
   rbenv rehash
 ```
 - Install basic dependencies if you are using Ubuntu:
@@ -93,7 +95,7 @@ If you have several servers with the same environment name you may want to diffe
 
 ## Google Analytics
 
-Modified the `XX-XXXXXXX-X` code in the [_google_analytics.html.slim](app/views/layouts/_google_analytics.html.slim) file
+Modify the `XX-XXXXXXX-X` code in the [_google_analytics.html.slim](app/views/layouts/_google_analytics.html.slim) file
 
 ## SEO Meta Tags
 
@@ -145,6 +147,4 @@ You can find more documentation in the [docs](docs) folder. The documentation av
 
 ## About
 
-This project is maintained by [Esteban Guido Pintos](https://github.com/epintos) and it is written by [Wolox](http://www.wolox.com.ar).
-
-![Wolox](https://raw.githubusercontent.com/Wolox/press-kit/master/logos/logo_banner.png)
+This project is maintained by [Esteban Guido Pintos](https://github.com/epintos)
