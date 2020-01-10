@@ -1,6 +1,8 @@
 module Api
   module V1
     class BooksController < ApplicationController
+      before_action :authenticate_user!, :set_locale
+
       def index
         render json: BooksSearchQuery.new.query(
           genre: book_search_params[:genre],

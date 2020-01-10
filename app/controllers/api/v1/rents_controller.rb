@@ -1,6 +1,8 @@
 module Api
   module V1
     class RentsController < ApplicationController
+      before_action :authenticate_user!, :set_locale
+
       def show
         authorize rent
         render json: rent

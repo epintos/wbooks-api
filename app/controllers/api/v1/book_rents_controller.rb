@@ -1,6 +1,8 @@
 module Api
   module V1
     class BookRentsController < ApplicationController
+      before_action :authenticate_user!, :set_locale
+
       def index
         render json: book.rents.includes(:user).page(params[:page])
       end

@@ -1,7 +1,7 @@
 module Api
   module V1
     class UsersController < ApplicationController
-      skip_before_action :current_user, :authenticate_request, only: [:create]
+      before_action :authenticate_user!, :set_locale, except: [:create]
       def me
         render json: current_user
       end
