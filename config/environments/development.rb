@@ -15,8 +15,6 @@ Rails.application.configure do
   # Enable/disable caching. By default caching is disabled.
   # Run rails dev:cache to toggle caching.
   if Rails.root.join('tmp', 'caching-dev.txt').exist?
-    config.action_controller.perform_caching = true
-
     config.cache_store = :memory_store
     config.public_file_server.headers = {
       'Cache-Control' => "public, max-age=#{2.days.to_i}"
@@ -77,8 +75,8 @@ Rails.application.configure do
     authentication: :plain,
     address: 'smtp.mailgun.org',
     port: 587,
-    domain: Rails.application.secrets.mailer_domain,
-    user_name: Rails.application.secrets.mailer_user_name,
-    password: Rails.application.secrets.mailer_password
+    domain: Rails.application.credentials.mailer_domain,
+    user_name: Rails.application.credentials.mailer_user_name,
+    password: Rails.application.credentials.mailer_password
   }
 end

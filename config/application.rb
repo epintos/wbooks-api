@@ -16,9 +16,9 @@ module WbooksApi
     # -- all .rb files in that directory are automatically loaded after loading
     # the framework and any gems in your application.
 
-    if Rails.application.secrets.email_recipients_interceptors.present?
+    if Rails.application.credentials.email_recipients_interceptors.present?
       Mail.register_interceptor RecipientInterceptor.new(
-        Rails.application.secrets.email_recipients_interceptors,
+        Rails.application.credentials.email_recipients_interceptors,
         subject_prefix: '[INTERCEPTOR]'
       )
     end

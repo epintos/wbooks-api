@@ -1,13 +1,14 @@
 source 'https://rubygems.org'
+git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.6.5'
+ruby '2.7.0'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '5.2.4.1'
+gem 'rails', '~> 6.0.2', '>= 6.0.2.1'
 # Use postgresql as the database for Active Record
-gem 'pg', '~> 0.18'
+gem 'pg', '>= 0.18', '< 2.0'
 # Use Puma as the app server
-gem 'puma', '~> 3.0'
+gem 'puma', '~> 4.1'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use fontawesome for common icons
@@ -15,7 +16,7 @@ gem 'font-awesome-rails'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .coffee assets and views
-gem 'coffee-rails', '~> 4.2'
+gem 'coffee-rails'
 
 gem 'therubyracer', platforms: :ruby
 
@@ -24,11 +25,11 @@ gem 'jquery-rails'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
 gem 'turbolinks', '~> 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'jbuilder', '~> 2.5'
+# gem 'jbuilder', '~> 2.5'
 # Use autoprefixer to avoid writing css prefixes
-gem 'autoprefixer-rails'
+# gem 'autoprefixer-rails'
 
-gem 'bootstrap-sass'
+# gem 'bootstrap-sass'
 
 # Use for processing images
 gem 'mini_magick'
@@ -43,11 +44,11 @@ gem 'kaminari'
 gem 'devise'
 gem 'devise-async'
 
-gem 'responders'
+# gem 'responders'
 
 gem 'active_model_serializers'
 
-gem 'foreman'
+# gem 'foreman'
 
 # Active Admin
 gem 'inherited_resources', git: 'https://github.com/activeadmin/inherited_resources'
@@ -58,13 +59,13 @@ gem 'slim-rails'
 
 # Sidekiq
 gem 'sidekiq'
-gem 'sidekiq-scheduler'
+# gem 'sidekiq-scheduler'
 gem 'sinatra', require: nil
 gem 'sidekiq-failures'
 gem 'sidekiq_mailer'
 
 # I18n
-gem 'rails-i18n', '~> 5.0.0' # For 5.0.x
+gem 'rails-i18n'
 
 # Authorization Policies
 gem 'pundit'
@@ -90,13 +91,14 @@ gem 'rack-cors'
 # Use Devise Token Auth for authentication
 gem 'devise_token_auth'
 
-gem 'bootsnap', require: false
+# Reduces boot times through caching; required in config/boot.rb
+gem 'bootsnap', '>= 1.4.2', require: false
 
 
 group :development do
   # Gem to detect N+1 queries
   gem 'bullet'
-  gem 'listen', '~> 3.0.5'
+  gem 'listen', '>= 3.0.5', '< 3.2'
   gem 'better_errors'
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
   gem 'web-console'
@@ -106,7 +108,6 @@ group :development do
 end
 
 group :development, :test do
-  gem 'dotenv-rails'
   gem 'awesome_print'
 
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

@@ -37,3 +37,7 @@ dump.rdb
 
 #Ignore all the .env files
 *.env
+
+config/credentials/development.key
+
+config/master.key

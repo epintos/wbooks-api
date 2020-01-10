@@ -14,7 +14,7 @@ User.create(email: 'testmail@wolox.com.ar', password: '123123123',
 FactoryBot.create_list(:book, 30)
 (1..3).each do |index|
   user = FactoryBot.create(
-    :user, email: "#{ENV['DEV_EMAIL']}+#{index}@wolox.com.ar", password: '123123123'
+    :user, email: "#{Rails.application.credentials.dev_email}+#{index}@wolox.com.ar", password: '123123123'
   )
   FactoryBot.create_list(:book_suggestion, 4, user: user)
   (1..3).each do |sub_index|
