@@ -1,6 +1,7 @@
 module Api
   module V1
     class WishesController < ApplicationController
+      before_action :authenticate_user!, :set_locale
       def index
         render json: current_user.wishes.includes(:book).page(params[:page])
       end

@@ -1,6 +1,8 @@
 module Api
   module V1
     class NotificationsController < ApplicationController
+      before_action :authenticate_user!, :set_locale
+
       def index
         render json: policy_scope(Notification).where(filter_params).includes(:from)
       end

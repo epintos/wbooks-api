@@ -1,6 +1,8 @@
 module Api
   module V1
     class CommentsController < ApplicationController
+      before_action :authenticate_user!, :set_locale
+
       def index
         render json: book.comments.includes(:user).page(params[:page]).per(params[:amount])
       end

@@ -1,17 +1,12 @@
 Rails.application.routes.draw do
+  
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  devise_for :users
 
   # API Endpoints
+  mount_devise_token_auth_for 'User', at: 'api/v1/auth'
   api_version(module: 'api/v1', path: { value: 'api/v1' }, defaults: { format: :json }) do
     resources :users, only: [:update, :create, :show] do
       collection do
-        resources :sessions, only: [:create] do
-          collection do
-            post :renew
-            post :invalidate_all
-          end
-        end
         get :me
       end
       resources :wishes, only: [:index, :show, :create]

@@ -1,10 +1,7 @@
 RSpec.shared_context 'Authenticated User' do
   let(:user) { create(:user) }
-  let!(:access_data) { AuthenticableEntity.generate_access_token(user) }
-  let!(:access_token) { access_data[:token] }
-  let!(:renew_id) { access_data[:renew_id] }
 
-  before(:each) do
-    request.headers['Authorization'] = access_token
+  before do
+    request.headers.merge!(user.create_new_auth_token)
   end
 end
